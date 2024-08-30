@@ -10,12 +10,11 @@
       <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
     </div>
     <div class="product-details">
-
       <h1 class="product-title">Título</h1>
       <input type="text" id="product-title" [(ngModel)]="product.titulo" (change)="onInputChange()">
 
       <h1 class="product-title">Precio</h1>
-      <input type="number" id="product-price" [(ngModel)]="product.precio" step="1" [value]="product.precio | number:'1.0-0'" (change)="onInputChange()">
+      <input type="number" id="product-price" [(ngModel)]="product.precio" step="1" [value]="product.precio" (change)="onInputChange()">
 
       <h1 class="product-title">Descripción</h1>
       <input id="product-description" [(ngModel)]="product.descripcion" (change)="onInputChange()">
@@ -27,7 +26,12 @@
       </select>
       <br><br>
 
-      <button class="buy-button" [ngClass]="{'save-button': hasChanges}" (click)="onSave()">Guardar</button>
+      <button
+      class="buy-button"
+      [ngClass]="{'save-button': buttonState === 'success', 'error-button': buttonState === 'error'}"
+      (click)="onSave()">
+      {{ buttonLabel }}
+    </button>
       <button class="delete-button" (click)="onDelete()">Eliminar Producto</button>
     </div>
   </div>

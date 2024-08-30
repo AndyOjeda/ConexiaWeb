@@ -14,14 +14,12 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent {
-  products: any[] = [];
   categories: any[] = [];
-  newProduct = { titulo: '', descripcion: '', precio: 0, imagen: '', categoria_id: 1 };
-
-  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
+  newProduct = { titulo: '', descripcion: '', precio: 0, categoria_id: 1 };
   selectedImage: string | null = null;
 
-  // Variables para manejar el estado del botón
+  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
+
   buttonLabel: string = 'Agregar';
   buttonState: 'normal' | 'success' | 'error' = 'normal';
 
@@ -32,49 +30,9 @@ export class AddProductComponent {
   }
 
   loadCategories(): void {
-    this.categories = [
-      { id: 1, nombre: 'Plastico' },
-      { id: 2, nombre: 'Textil' },
-    ];
-  }
-
-  createProduct(): void {
-    // Validar que todos los campos estén llenos
-    if (!this.newProduct.titulo || !this.newProduct.descripcion || !this.newProduct.precio || !this.selectedImage) {
-      this.setButtonState('Todos los campos son obligatorios', 'error');
-      return;
-    }
-
-    const formData = new FormData();
-    const userId = localStorage.getItem('userId'); // Obtén el userId desde localStorage
-
-    formData.append('titulo', this.newProduct.titulo);
-    formData.append('descripcion', this.newProduct.descripcion);
-    formData.append('precio', this.newProduct.precio.toString());
-    formData.append('categoria_id', this.newProduct.categoria_id.toString());
-    formData.append('userId', userId!);
-
-    if (this.fileInput.nativeElement.files[0]) {
-      formData.append('imagen', this.fileInput.nativeElement.files[0]);
-    }
-
-    this.backendService.createProduct(formData).subscribe(
-      () => {
-        this.newProduct = { titulo: '', descripcion: '', precio: 0, imagen: '', categoria_id: 1 };
-        this.selectedImage = null;
-        this.fileInput.nativeElement.value = '';
-
-        // Cambiar el estado del botón a éxito
-        this.setButtonState('Producto añadido correctamente', 'success');
-      },
-      (error) => {
-        if (error.status === 400) {
-          this.setButtonState('Producto ya creado con ese nombre', 'error');
-        } else {
-          this.setButtonState('Error al añadir el producto', 'error');
-        }
-      }
-    );
+    this.backendService.getCategories().subscribe((data) => {
+      this.categories = data;
+    });
   }
 
   onFileSelected(event: Event) {
@@ -90,14 +48,37 @@ export class AddProductComponent {
     }
   }
 
-  removeImage() {
-    this.selectedImage = null;
-    this.fileInput.nativeElement.value = ''; // Resetear el input
-  }
+  createProduct(): void {
+    if (!this.newProduct.titulo || !this.newProduct.descripcion || !this.newProduct.precio || !this.selectedImage) {
+      this.setButtonState('Todos los campos son obligatorios', 'error');
+      return;
+    }
 
-  resetButton() {
-    this.buttonLabel = 'Agregar';
-    this.buttonState = 'normal';
+    const userId = localStorage.getItem('userId'); // Captura el userId del localStorage
+
+    const formData = new FormData();
+    formData.append('titulo', this.newProduct.titulo);
+    formData.append('descripcion', this.newProduct.descripcion);
+    formData.append('precio', this.newProduct.precio.toString());
+    formData.append('categoria_id', this.newProduct.categoria_id.toString());
+    formData.append('user_id', userId!);
+
+    if (this.fileInput.nativeElement.files[0]) {
+      formData.append('imagen', this.fileInput.nativeElement.files[0]);
+    }
+
+    this.backendService.createProduct(formData).subscribe(
+      () => {
+        this.setButtonState('Producto añadido correctamente', 'success');
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      },
+      (error) => {
+        this.setButtonState('Error al crear el producto', 'error');
+        console.error('Error al crear el producto', error);
+      }
+    );
   }
 
   setButtonState(message: string, state: 'success' | 'error') {
@@ -107,7 +88,17 @@ export class AddProductComponent {
     if (state === 'success') {
       setTimeout(() => {
         this.resetButton();
-      }, 3000); // Volver al estado normal después de 3 segundos
+      }, 2000); // Volver al estado normal después de 2 segundos
     }
+  }
+
+  resetButton() {
+    this.buttonLabel = 'Agregar';
+    this.buttonState = 'normal';
+  }
+
+  removeImage() {
+    this.selectedImage = null;
+    this.fileInput.nativeElement.value = '';
   }
 }

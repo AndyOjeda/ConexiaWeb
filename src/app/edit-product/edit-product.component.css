@@ -32,8 +32,8 @@ i{
 }
 
 .product-image img {
-  width: auto;
-  height: 22rem;
+  max-width: 100%;
+  height: auto;
   border-radius: 10px;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -41,8 +41,9 @@ i{
   margin-right: 5rem;
 }
 
+
 .product-details {
-  margin-left: 3rem;
+  margin-left: 5rem;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -79,9 +80,6 @@ input{
   border-radius: 25px;
 }
 
-.buy-button:hover {
-  background-color: #e0b800; /* Oscurece un poco el color al pasar el mouse */
-}
 
 .product-image {
   position: relative;
@@ -125,6 +123,19 @@ input{
 .delete-button:hover {
   background-color: #d32f2f;
 }
+
+.buy-button {
+  background-color: #4caf50;  /* Azul por defecto */
+}
+
+.save-button {
+  background-color: #008cba; /* Verde para éxito */
+}
+
+.error-button {
+  background-color: #f44336; /* Rojo para error */
+}
+
 
 select {
   padding: 10px;

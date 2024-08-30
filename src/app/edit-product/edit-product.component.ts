@@ -22,6 +22,10 @@ export class EditProductComponent implements OnInit {
   hasChanges: boolean = false;
   selectedFile: File | null = null;
 
+  // Definición de las nuevas propiedades
+  buttonLabel: string = 'Guardar';
+  buttonState: 'normal' | 'success' | 'error' = 'normal';
+
   @ViewChild('fileInput') fileInput!: ElementRef;
 
   constructor(
@@ -38,15 +42,10 @@ export class EditProductComponent implements OnInit {
         this.productImage = this.backendService.getImageUrl(this.product.imagen);
       });
     }
-
-    // Escuchar cambios en el formulario
-    this.route.queryParams.subscribe(() => {
-      this.hasChanges = true; // Cambia esto para verificar cambios en los inputs
-    });
   }
 
   onInputChange(): void {
-    this.hasChanges = true; // Cambia a true si algún input ha cambiado
+    this.hasChanges = true;
   }
 
   back(): void {
@@ -63,7 +62,6 @@ export class EditProductComponent implements OnInit {
       this.selectedFile = file;
       this.hasChanges = true;
 
-      // Mostrar la imagen seleccionada
       const reader = new FileReader();
       reader.onload = () => {
         this.productImage = reader.result as string;
@@ -75,28 +73,41 @@ export class EditProductComponent implements OnInit {
   onSave(): void {
     if (this.selectedFile) {
       // Subir la nueva imagen si se seleccionó una
-      this.backendService.uploadImage(this.selectedFile).subscribe((imagePath) => {
-        this.product.imagen = imagePath;
-        this.saveProduct();
-      });
+      this.backendService.uploadImage(this.selectedFile).subscribe(
+        (response) => {
+          this.product.imagen = response.path;
+          this.saveProduct();
+        },
+        (error) => {
+          this.setButtonState('Error al subir imagen', 'error');
+        }
+      );
     } else {
-      // Guardar los cambios del producto sin cambiar la imagen
+      // Guardar los cambios del producto con la imagen existente
       this.saveProduct();
     }
   }
 
   saveProduct(): void {
+    if (!this.product.imagen) {
+      this.product.imagen = this.productImage; // Asegúrate de que se envíe la imagen actual si no se ha seleccionado una nueva
+    }
+
     this.backendService.updateProduct(this.product).subscribe(
       () => {
-        this.router.navigate(['/user']);
+        this.setButtonState('Cambios exitosos', 'success');
+        setTimeout(() => this.router.navigate(['/user']), 2000);
       },
       (error) => {
-        // Mostrar un mensaje de error
-        alert('Error al actualizar el producto. Por favor, intenta nuevamente.');
+        this.setButtonState('Error al guardar', 'error');
       }
     );
   }
 
+  setButtonState(message: string, state: 'success' | 'error') {
+    this.buttonLabel = message;
+    this.buttonState = state;
+  }
 
   onDelete(): void {
     const productId = this.route.snapshot.paramMap.get('id');

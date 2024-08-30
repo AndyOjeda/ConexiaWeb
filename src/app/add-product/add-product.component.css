@@ -108,20 +108,24 @@ textarea {
   transition: background-color 0.3s ease;
 }
 
-.add-button.normal {
-  background-color: #6bd629; /* Azul estándar */
+
+/* add-product.component.css */
+
+.btn-success {
+  background-color:#007bff;
   color: white;
 }
 
-.add-button.success {
-  background-color: #007bff; /* Verde */
+.btn-error {
+  background-color: #dc3545;
   color: white;
 }
 
-.add-button.error {
-  background-color: #dc3545; /* Rojo */
+.btn-normal {
+  background-color: #6bd629;
   color: white;
 }
+
 
 
 

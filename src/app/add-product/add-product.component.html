@@ -4,12 +4,10 @@
   <h1>Agregar Producto</h1>
 
   <div class="upload-section">
-    <!-- Botón que dispara la subida de archivos -->
     <button class="upload-button" *ngIf="!selectedImage" (click)="fileInput.click()">
       <i class="pi pi-upload"></i>
     </button>
 
-    <!-- Input de tipo file oculto -->
     <input
       type="file"
       #fileInput
@@ -17,7 +15,6 @@
       accept="image/*"
       style="display: none;" />
 
-    <!-- Imagen seleccionada con ícono de eliminación -->
     <div *ngIf="selectedImage" class="image-preview">
       <img [src]="selectedImage" alt="Selected Image" class="preview-image" />
       <button class="remove-button" (click)="removeImage()">
@@ -27,23 +24,27 @@
   </div>
 
   <div class="form-section">
-    <input type="text" placeholder="Nombre" [(ngModel)]="newProduct.titulo" name="titulo" (ngModelChange)="resetButton()" />
-    <input type="text" placeholder="Precio" [(ngModel)]="newProduct.precio" name="precio" (ngModelChange)="resetButton()" />
-    <textarea placeholder="Descripción" [(ngModel)]="newProduct.descripcion" name="descripcion" (ngModelChange)="resetButton()"></textarea>
+    <input type="text" placeholder="Nombre" [(ngModel)]="newProduct.titulo" name="titulo" />
+    <input type="text" placeholder="Precio" [(ngModel)]="newProduct.precio" name="precio" />
+    <textarea placeholder="Descripción" [(ngModel)]="newProduct.descripcion" name="descripcion"></textarea>
 
-    <!-- Dropdown para seleccionar categoría -->
-    <select [(ngModel)]="newProduct.categoria_id" name="categoria_id" (ngModelChange)="resetButton()">
+    <select [(ngModel)]="newProduct.categoria_id" name="categoria_id">
       <option *ngFor="let category of categories" [value]="category.id">
         {{ category.nombre }}
       </option>
     </select>
   </div>
 
-  <!-- Botón con estado dinámico -->
   <button
     class="add-button"
-    [ngClass]="buttonState"
+    [ngClass]="{
+      'btn-success': buttonState === 'success',
+      'btn-error': buttonState === 'error',
+      'btn-normal': buttonState === 'normal'
+    }"
     (click)="createProduct()">
     {{ buttonLabel }}
   </button>
 </div>
+
+

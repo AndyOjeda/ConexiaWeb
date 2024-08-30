@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { AuthService } from './auth.service';
 import { UserProfile } from '../app/models/userProfile.interface';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,11 +46,11 @@ export class BackendService {
   }
 
   // Productos
+
   createProduct(formData: FormData): Observable<any> {
     const headers = this.getAuthHeaders(); // Asegúrate de incluir los headers con el token
     return this.http.post<any>(`${this.apiUrl}/products`, formData, { headers });
   }
-
 
   getProducts(): Observable<any[]> {
     const headers = this.getAuthHeaders();
@@ -72,26 +73,26 @@ export class BackendService {
     return this.http.get<any>(`${this.apiUrl}/products/${id}`);
   }
 
-  // Actualizar Producto
   updateProduct(product: any): Observable<any> {
     const headers = this.getAuthHeaders();
     const productId = product.id;
     return this.http.put<any>(`${this.apiUrl}/products/${productId}`, product, { headers });
   }
 
-  // Eliminar Producto
   deleteProduct(productId: string): Observable<any> {
     const headers = this.getAuthHeaders();
     return this.http.delete<any>(`${this.apiUrl}/products/${productId}`, { headers });
   }
 
-  // Nuevo: Subir Imagen
-  uploadImage(file: File): Observable<string> {
+// backendService.ts
+  uploadImage(file: File): Observable<{ path: string }> { // Indicar que se espera un objeto con una propiedad 'path'
     const formData = new FormData();
     formData.append('image', file);
 
     const headers = this.getAuthHeaders();
 
-    return this.http.post<string>(`${this.apiUrl}/products/upload-image`, formData, { headers });
-  }
+    return this.http.post<{ path: string }>(`${this.apiUrl}/products/upload-image`, formData, { headers });
+}
+
+
 }
