@@ -2,18 +2,16 @@
   <i class="pi pi-chevron-left" (click)="back()"></i>
 </div>
 
-<div class="product-page">
+<div *ngIf="product" class="product-page">
   <div class="product-card">
     <div class="product-image">
-      <img src="assets/img/casco.png" alt="Producto">
+      <img [src]="product.imagen" alt="Producto">
     </div>
     <div class="product-details">
-      <h1 class="product-title">Título del Producto</h1>
-      <p class="product-price">€99,99</p>
-      <p class="product-description">
-        Descripción detallada del producto. Aquí se resaltan las características, beneficios y cualquier otra información relevante que pueda atraer al comprador.
-      </p>
-      <button class="buy-button">Comprar Ahora</button>
+      <h1 class="product-title">{{ product.titulo }}</h1>
+      <p class="product-price">{{ product.precio | currency:'USD':true:'1.0-0' }}</p>
+      <p class="product-description">{{ product.descripcion }}</p>
+      <button class="buy-button" (click)="buyNow()">Comprar Ahora</button>
     </div>
   </div>
 </div>

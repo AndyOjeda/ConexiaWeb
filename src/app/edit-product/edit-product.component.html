@@ -1,4 +1,3 @@
-
 <div class="market-filters">
   <i class="pi pi-chevron-left" (click)="back()"></i>
 </div>
@@ -6,24 +5,30 @@
 <div class="product-page">
   <div class="product-card">
     <div class="product-image">
-      <img src="assets/img/casco.png" alt="Producto">
+      <img [src]="productImage" alt="Producto">
+      <button class="change-image-button" (click)="onImageChange()">Cambiar Imagen</button>
+      <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
     </div>
     <div class="product-details">
 
-      <h1 class="product-title">Titulo</h1>
-      <input type="text" id="product-title">
+      <h1 class="product-title">Título</h1>
+      <input type="text" id="product-title" [(ngModel)]="product.titulo" (change)="onInputChange()">
 
       <h1 class="product-title">Precio</h1>
-      <input type="number" id="product-price" >
+      <input type="number" id="product-price" [(ngModel)]="product.precio" step="1" [value]="product.precio | number:'1.0-0'" (change)="onInputChange()">
 
       <h1 class="product-title">Descripción</h1>
-      <input id="product-description">
+      <input id="product-description" [(ngModel)]="product.descripcion" (change)="onInputChange()">
 
-      <h1 class="product-title">Categoria</h1>
-      <input type="text" id="product-category">
+      <h1 class="product-title">Categoría</h1>
+      <select id="product-category" [(ngModel)]="product.categoria_id" (change)="onInputChange()">
+        <option [value]="1">Plástico</option>
+        <option [value]="2">Textil</option>
+      </select>
       <br><br>
 
-      <button class="buy-button">Editar</button>
+      <button class="buy-button" [ngClass]="{'save-button': hasChanges}" (click)="onSave()">Guardar</button>
+      <button class="delete-button" (click)="onDelete()">Eliminar Producto</button>
     </div>
   </div>
 </div>

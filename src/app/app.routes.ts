@@ -20,8 +20,8 @@ export const routes: Routes = [
   { path: 'addProduct', component: AddProductComponent, canActivate: [AuthGuard] },
   { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
   { path: 'userConfig', component: UserConfigurationComponent, canActivate: [AuthGuard] },
-  { path: 'product', component: ProductComponent},
-  { path: 'editProduct', component: EditProductComponent, canActivate: [AuthGuard] },
+  { path: 'product/:id', component: ProductComponent},
+  { path: 'editProduct/:id', component: EditProductComponent, canActivate: [AuthGuard] },
   { path: '**', component: HomeComponent }
 
   // Otras rutas pueden ser agregadas aquí

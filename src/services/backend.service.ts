@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { AuthService } from './auth.service';
 import { UserProfile } from '../app/models/userProfile.interface';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -32,7 +31,8 @@ export class BackendService {
   }
 
   getUserProfile(): Observable<UserProfile> {
-    return this.http.get<UserProfile>('/api/user-profile');
+    const headers = this.authService.getAuthHeaders();
+    return this.http.get<UserProfile>(`${this.apiUrl}/users/profile`, { headers });
   }
 
   // Categorías
@@ -44,12 +44,12 @@ export class BackendService {
     return this.http.get<any[]>(`${this.apiUrl}/categories`);
   }
 
-
   // Productos
-
   createProduct(formData: FormData): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/products`, formData);
+    const headers = this.getAuthHeaders(); // Asegúrate de incluir los headers con el token
+    return this.http.post<any>(`${this.apiUrl}/products`, formData, { headers });
   }
+
 
   getProducts(): Observable<any[]> {
     const headers = this.getAuthHeaders();
@@ -68,6 +68,30 @@ export class BackendService {
     return this.http.get<any[]>(`${this.apiUrl}/products/search`, { params: { q: query } });
   }
 
+  getProductById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/products/${id}`);
+  }
 
+  // Actualizar Producto
+  updateProduct(product: any): Observable<any> {
+    const headers = this.getAuthHeaders();
+    const productId = product.id;
+    return this.http.put<any>(`${this.apiUrl}/products/${productId}`, product, { headers });
+  }
 
+  // Eliminar Producto
+  deleteProduct(productId: string): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.delete<any>(`${this.apiUrl}/products/${productId}`, { headers });
+  }
+
+  // Nuevo: Subir Imagen
+  uploadImage(file: File): Observable<string> {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    const headers = this.getAuthHeaders();
+
+    return this.http.post<string>(`${this.apiUrl}/products/upload-image`, formData, { headers });
+  }
 }

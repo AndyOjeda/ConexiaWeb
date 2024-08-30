@@ -32,9 +32,13 @@ i{
 }
 
 .product-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px 0 0 10px;
+  width: auto;
+  height: 22rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
 }
 
 .product-details {
@@ -46,19 +50,20 @@ i{
 
 .product-title {
   font-size: 28px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: #ffffff;
 }
 
 .product-price {
-  font-size: 24px;
+  font-size: 40px;
   color: #75d1bf; /* Color dorado para resaltar el precio */
-  margin-bottom: 15px;
+  font-weight: 700;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .product-description {
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.5;
   margin-bottom: 20px;
   color: #ffffff;
@@ -75,6 +80,7 @@ i{
   cursor: pointer;
   text-transform: uppercase;
   transition: background-color 0.3s ease;
+  width: auto;
 }
 
 .buy-button:hover {

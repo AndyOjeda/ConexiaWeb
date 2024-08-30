@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

@@ -32,9 +32,13 @@ i{
 }
 
 .product-image img {
-  width: 45rem;
-  height: auto;
-  border-radius: 10px 0 0 10px;
+  width: auto;
+  height: 22rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
 }
 
 .product-details {
@@ -64,11 +68,10 @@ input{
 
 .buy-button {
   background-color: #75d1bf; /* Botón dorado para destacar */
-  color: #333;
+  color: #fff;
   border: none;
   padding: 15px 20px;
   font-size: 18px;
-  border-radius: 5px;
   cursor: pointer;
   text-transform: uppercase;
   transition: background-color 0.3s ease;
@@ -78,4 +81,58 @@ input{
 
 .buy-button:hover {
   background-color: #e0b800; /* Oscurece un poco el color al pasar el mouse */
+}
+
+.product-image {
+  position: relative;
+  margin: 1rem;
+}
+
+.change-image-button {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: #75d1bf;
+  color: #333;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.change-image-button:hover {
+  background-color: #e0b800;
+}
+
+.save-button {
+  background-color: #4caf50; /* Verde */
+}
+
+.delete-button {
+  background-color: #f44336; /* Rojo */
+  color: #fff;
+  border: none;
+  padding: 15px 20px;
+  font-size: 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 25rem;
+  height: 3rem;
+  border-radius: 25px;
+  font-size: 18px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavbarComponent } from "../navbar/navbar.component";
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-configuration',
@@ -11,10 +12,16 @@ import { NavbarComponent } from "../navbar/navbar.component";
 })
 export class UserConfigurationComponent {
 
-  constructor(private router: Router) {}
+  userEmail: string | null = '';
+
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit() {
+    this.userEmail = this.authService.getUserEmail(); // Obtén el email del usuario al inicializar el componente
+  }
 
   back() {
-    this.router.navigate(['/user']); // Aquí defines a qué componente quieres redirigir
+    this.router.navigate(['/user']);
   }
 
 }
