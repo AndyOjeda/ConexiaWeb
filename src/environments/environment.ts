@@ -1,6 +1,6 @@
-// src/environments/environment.ts
+// environment.prod.ts
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:3000/api',
-  imageUrl: 'http://localhost:3000/uploads/'
+  production: true,
+  apiUrl: 'https://conexia-backend.vercel.app/api', // Cambia esta URL
+  imageUrl: 'https://conexia-backend.vercel.app/uploads/' // Cambia esta URL si tus imágenes se sirven desde esta ruta
 };
