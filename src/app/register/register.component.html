@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+
+<div class="login-container">
+  <div class="login-form">
+    <h1>Registrar</h1>
+    <input type="email" placeholder="Nombre" [(ngModel)]="nombre"> <!-- Cambié el tipo de email a text -->
+    <input type="email" placeholder="Email" [(ngModel)]="email">
+    <input type="password" placeholder="Password" [(ngModel)]="password">
+    <button
+      class="btn-continue"
+      [ngStyle]="{ 'background-color': buttonColor }"
+      (click)="register()">
+      {{ buttonText }}
+    </button>
+    <div class="login-options">
+      <button class="btn-register" (click)="navigateTo('login')">Iniciar Sesión</button>
+    </div>
+  </div>
+  <div class="login-image">
+    <img src="assets/img/casco.png" alt="Image">
+  </div>
+</div>

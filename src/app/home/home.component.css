@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+  background: #000000;
+  --gap: 4em;
+  --line: 1px;
+  --color: rgba(255, 255, 255, 0.371);
+
+  background-image: linear-gradient(
+      -90deg,
+      transparent calc(var(--gap) - var(--line)),
+      var(--color) calc(var(--gap) - var(--line) + 1px),
+      var(--color) var(--gap)
+    ),
+    linear-gradient(
+      0deg,
+      transparent calc(var(--gap) - var(--line)),
+      var(--color) calc(var(--gap) - var(--line) + 1px),
+      var(--color) var(--gap)
+    );
+  background-size: var(--gap) var(--gap);
+}
+
+.container {
+  height: 86.5vh;
+}
+
+.welcome-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 66vh;
+  background-color: transparent;
+  margin-bottom: 5rem;
+}
+
+.welcome-section h1 {
+  color: white;
+  font-size: 7rem;
+  font-weight: 600;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.welcome-section span {
+  background-color: #25272E;
+  padding: 10px 20px;
+  margin-left: 28px;
+  border-radius: 45px;
+  font-size: 8rem;
+  text-align: center;
+}
+
+.welcome-section span:hover {
+  background-color: #75d1bf;
+}

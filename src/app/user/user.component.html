@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+<div class="market-container">
+  <div class="title-market">
+      <h1 class="market-title">Bienvenido {{ userName }}</h1>
+
+    <div class="market-filters">
+        <i class="pi pi-cog" (click)="goToComponentA()"></i>
+    </div>
+  </div>
+
+  <div class="products-container">
+    <div *ngFor="let product of products" class="card">
+      <div class="card-image">
+        <img [src]="backendService.getImageUrl(product.imagen)" alt="Product Image">
+      </div>
+      <div class="card-content">
+        <p class="card-title">{{ product.titulo }}</p>
+        <p class="card-price">{{ product.precio | currency:'USD':true:'1.0-0' }}</p>
+        <button class="buy-button" (click)="editarProducto(product.id)">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>

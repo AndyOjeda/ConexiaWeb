@@ -1,0 +1,63 @@
+.login-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80vh;
+  background-color: #111827; /* Fondo oscuro */
+  padding: 0 5rem;
+  color: white;
+}
+
+.login-form {
+  max-width: 400px;
+  width: 100%;
+  margin-left: 5rem;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+input[type="email"],
+input[type="password"]{
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background-color: #f3f4f6; /* Color claro para inputs */
+}
+
+.btn-continue {
+  width: 26.5rem;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 20px;
+  border: none;
+  background-color: #22c55e; /* Verde */
+  color: white;
+  cursor: pointer;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-register {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  background-color: #e5e7eb; /* Color gris claro */
+  color: black;
+  cursor: pointer;
+  width: 15rem;
+}
+
+.login-image img {
+  height: 35rem;
+  width: 40rem;
+}

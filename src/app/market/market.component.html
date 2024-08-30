@@ -1,0 +1,34 @@
+<app-navbar></app-navbar>
+<div class="market-container">
+  <div class="title-market">
+    <h1 class="market-title">Tienda</h1>
+
+    <div class="market-filters">
+      <button
+        class="filter-button"
+        [class.active]="activeButton === 'Textil'"
+        (click)="setActiveButton('Textil')">
+        Textil
+      </button>
+      <button
+        class="filter-button"
+        [class.active]="activeButton === 'Plastico'"
+        (click)="setActiveButton('Plastico')">
+        Plástico
+      </button>
+    </div>
+  </div>
+
+  <div class="products-container">
+    <div class="card" *ngFor="let product of products">
+      <div class="card-image">
+        <img [src]="getProductImage(product.imagen)" alt="Product Image">
+      </div>
+      <div class="card-content">
+        <p class="card-title">{{ product.titulo }}</p>
+        <p class="card-price">{{ product.precio | currency:'USD':true:'1.0-0' }}</p>
+        <button class="buy-button" (click)="openProduct(product)">Comprar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+body {
+  background-color: #25272e; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco para buen contraste */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.product-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  padding: 20px;
+}
+
+i{
+  margin-left: 5rem;
+  margin-top: 2rem;
+  font-size: 2.5rem;
+  color: #ffffff;
+}
+
+.product-card {
+  background-color: #25272e; /* Fondo de la card un poco más claro que el fondo principal */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  max-width: 90rem;
+  width: 80rem;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px 0 0 10px;
+}
+
+.product-details {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-title {
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #ffffff;
+}
+
+.product-price {
+  font-size: 24px;
+  color: #75d1bf; /* Color dorado para resaltar el precio */
+  margin-bottom: 15px;
+}
+
+.product-description {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.buy-button {
+  background-color: #75d1bf; /* Botón dorado para destacar */
+  color: #333;
+  border: none;
+  padding: 15px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+  background-color: #e0b800; /* Oscurece un poco el color al pasar el mouse */
+}

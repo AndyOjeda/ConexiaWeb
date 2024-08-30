@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+
+<div class="search-container">
+  <h1 class="search-title">Buscar</h1>
+
+  <div class="search-bar">
+    <input #searchInput type="text" placeholder="Buscar..." class="search-input">
+    <button class="pi pi-search" (click)="onSearch(searchInput.value)"></button>
+  </div>
+</div>
+
+<div class="products-container">
+  <div class="card" *ngFor="let product of products">
+    <div class="card-image">
+      <img [src]="getProductImage(product.imagen)" alt="Product Image">
+    </div>
+    <div class="card-content">
+      <p class="card-title">{{ product.titulo }}</p>
+      <p class="card-price">{{ product.precio | currency:'USD':true:'1.0-0' }}</p>
+      <button class="buy-button" (click)="openProduct(product)">Comprar</button>
+    </div>
+  </div>
+</div>

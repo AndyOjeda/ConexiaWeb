@@ -1,0 +1,123 @@
+.navbars {
+  display: flex;
+  justify-content: center;
+}
+
+.home-navbar {
+  background-color: rgba(37, 39, 46, 0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 50px;
+  height: 3rem;
+  width: 70rem;
+  text-align: center;
+
+}
+
+.other-navbar {
+  background-color: rgba(25, 25, 25, 0.8); /* Fondo para otras páginas */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(37, 39, 46, 0.8); /* Fondo del navbar semi-transparente */
+  padding: 10px 20px;
+  margin-top: 2rem; /* Margen superior */
+  border-radius: 50px;
+  height: 3rem;
+  width: 70rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(37, 39, 46, 0.8); /* Fondo del navbar semi-transparente */
+  padding: 10px 20px;
+  margin-top: 2rem; /* Margen superior */
+  border-radius: 50px;
+  height: 3rem;
+}
+
+img{
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.logo {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-left: 1.5rem;
+  text-shadow: 2px 1px 0.5px #75d1bf;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: transparent;
+  border: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 25px;
+  margin-left: 25px;
+  font-size: 1.5rem;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 500;
+}
+
+.add-button {
+  background-color: #6bd629;
+  color: white;
+  border: none;
+  padding: 5px 45px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.profile-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Se posiciona justo debajo del icono */
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Asegura que el menú esté sobre otros elementos */
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.dropdown-menu a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}

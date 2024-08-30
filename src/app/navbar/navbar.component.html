@@ -1,0 +1,19 @@
+<div class="navbars">
+  <nav [ngClass]="{'home-navbar': isHome, 'other-navbar': !isHome}">
+    <button class="logo" (click)="goHome()"><img src="assets/img/logoConexia.png" alt="logo"></button>
+    <div class="nav-links">
+      <a href="market">Tienda</a>
+      <a href="search">Buscar</a>
+      <button class="add-button" *ngIf="isLoggedIn()" (click)="navigateTo('addProduct')">Agregar</button>
+    </div>
+    <div class="profile-icon" (click)="toggleMenu()">
+      <span class="pi pi-user" style="color: white; font-size: 1.5rem; margin-right: 1rem;"></span>
+      <div class="dropdown-menu" *ngIf="isMenuOpen">
+        <a *ngIf="isLoggedIn()" (click)="navigateTo('user')">Mi Cuenta</a>
+        <a *ngIf="isLoggedIn()" (click)="logout()">Cerrar Sesión</a>
+        <a *ngIf="!isLoggedIn()" (click)="navigateTo('login')">Iniciar Sesión</a>
+        <a *ngIf="!isLoggedIn()" (click)="navigateTo('register')">Registrar</a>
+      </div>
+    </div>
+  </nav>
+</div>

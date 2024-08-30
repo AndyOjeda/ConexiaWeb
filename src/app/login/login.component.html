@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+
+<div class="login-container">
+  <div class="login-form">
+    <h1>Iniciar Sesión</h1>
+    <input type="email" [(ngModel)]="email" (ngModelChange)="resetButton()" placeholder="Email">
+    <input type="password" [(ngModel)]="password" (ngModelChange)="resetButton()" placeholder="Password">
+
+    <button class="btn-continue"
+            [disabled]="loading"
+            [class.error]="errorMessage"
+            (click)="login()">
+      <ng-container *ngIf="!loading && !errorMessage">Continuar</ng-container>
+      <ng-container *ngIf="loading">
+        <i class="pi pi-spin pi-spinner"></i>
+      </ng-container>
+      <ng-container *ngIf="!loading && errorMessage">
+        {{ errorMessage }}
+      </ng-container>
+    </button>
+
+    <div class="login-options">
+      <button class="btn-register" (click)="navigateTo('register')">Registrar</button>
+    </div>
+  </div>
+
+  <div class="login-image">
+    <img [src]="'assets/img/casco.png'" alt="image">
+  </div>
+</div>
