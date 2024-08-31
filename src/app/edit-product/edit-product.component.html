@@ -5,7 +5,7 @@
 <div class="product-page">
   <div class="product-card">
     <div class="product-image">
-      <img [src]="productImage" alt="Producto">
+      <img [src]="product.imagen" alt="Producto">
       <button class="change-image-button" (click)="onImageChange()">Cambiar Imagen</button>
       <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
 
