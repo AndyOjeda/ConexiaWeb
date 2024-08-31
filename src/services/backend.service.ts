@@ -63,7 +63,7 @@ export class BackendService {
 
 
   getProductsByCategory(category: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/categories/products/${category}`);
+    return this.http.get<any[]>(`${this.apiUrl}/categories/products/${category.toLowerCase()}`);
   }
 
   searchProducts(query: string): Observable<any[]> {

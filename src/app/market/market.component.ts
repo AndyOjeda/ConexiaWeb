@@ -39,17 +39,18 @@ export class MarketComponent implements OnInit {
 
 
   setActiveButton(category: string) {
-    const categoryId = category === 'Textil' ? 2 : 1; // Suponiendo que Textil tiene ID 2 y Plástico tiene ID 1
-
     if (this.activeButton === category) {
-      this.activeButton = null;
-      this.filteredProducts = this.products;
+        // Si ya está activo, desactiva el filtro y muestra todos los productos
+        this.activeButton = null;
+        this.filteredProducts = this.products;
     } else {
-      this.activeButton = category;
-      this.filteredProducts = this.products.filter(product => product.categoria_id === categoryId);
+        // Filtra los productos por la categoría seleccionada
+        this.activeButton = category;
+        this.filteredProducts = this.products.filter(product => {
+            return product.categoria && product.categoria.toLowerCase() === category.toLowerCase();
+        });
     }
-  }
-
+}
 
 
 
