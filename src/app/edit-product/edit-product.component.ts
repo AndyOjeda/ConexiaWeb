@@ -40,7 +40,7 @@ export class EditProductComponent implements OnInit {
     if (productId) {
       this.backendService.getProductById(productId).subscribe((data) => {
         this.product = data;
-        this.productImage = this.backendService.getImageUrl(this.product.imagen);
+        this.productImage = this.backendService.getImageUrl(this.product.image);
       });
     }
   }
@@ -78,7 +78,7 @@ export class EditProductComponent implements OnInit {
       this.backendService.uploadImage(this.selectedFile).subscribe(
         (response) => {
           this.isUploading = false; // Ocultar el ícono de carga
-          this.product.imagen = response.path; // Guardar la nueva ruta de la imagen
+          this.product.image = response.path; // Guardar la nueva ruta de la imagen
           this.previewImage = null; // Limpiar la previsualización una vez que se sube la imagen
           this.saveProduct();
         },
@@ -94,8 +94,8 @@ export class EditProductComponent implements OnInit {
   }
 
   saveProduct(): void {
-    if (!this.product.imagen) {
-      this.product.imagen = this.productImage; // Asegúrate de que se envíe la imagen actual si no se ha seleccionado una nueva
+    if (!this.product.image) {
+      this.product.image = this.productImage; // Asegúrate de que se envíe la imagen actual si no se ha seleccionado una nueva
     }
 
     this.backendService.updateProduct(this.product).subscribe(

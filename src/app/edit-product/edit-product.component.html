@@ -5,10 +5,8 @@
 <div class="product-page">
   <div class="product-card">
     <div class="product-image">
-      <!-- Mostrar la previsualización de la imagen seleccionada o la imagen existente -->
-      <img [src]="isUploading ? product.image : previewImage" alt="Producto">
-
-      <!-- Botón para cambiar la imagen -->
+      <!-- Mostrar la imagen del producto o la previsualización si está disponible -->
+      <img [src]="isUploading ? previewImage : product.image" alt="Producto">
       <button class="change-image-button" (click)="onImageChange()">Cambiar Imagen</button>
       <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
 
