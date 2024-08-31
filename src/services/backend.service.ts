@@ -52,6 +52,7 @@ export class BackendService {
     return this.http.post<any>(`${this.apiUrl}/products`, formData, { headers });
   }
 
+
   getProducts(): Observable<any[]> {
     const headers = this.getAuthHeaders();
     return this.http.get<any[]>(`${this.apiUrl}/products`, { headers });
