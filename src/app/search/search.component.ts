@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { BackendService } from '../../services/backend.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -14,7 +15,7 @@ export class SearchComponent {
 
   products: any[] = [];
 
-  constructor(private backendService: BackendService) {}
+  constructor(private backendService: BackendService, private router: Router) {}
 
   onSearch(query: string): void {
     this.backendService.searchProducts(query).subscribe((data) => {
@@ -22,12 +23,14 @@ export class SearchComponent {
     });
   }
 
-  getProductImage(imagePath: string): string {
-    return this.backendService.getImageUrl(imagePath);
+  getProductImage(imagePath: string):string {
+    return imagePath;
   }
 
-  openProduct(product: any): void {
-    // Lógica para abrir la vista del producto
+  openProduct(product: any) {
+    // Lógica para abrir el producto (por ejemplo, navegar a una nueva vista)
+    console.log('Producto seleccionado:', product);
+    this.router.navigate(['/product', product.id]);
   }
 
 }
