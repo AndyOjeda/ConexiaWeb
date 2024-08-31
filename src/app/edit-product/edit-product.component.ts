@@ -7,6 +7,7 @@ import { NgClass } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-edit-product',
   standalone: true,
@@ -18,7 +19,6 @@ import { CommonModule } from '@angular/common';
 export class EditProductComponent implements OnInit {
   product: any = {};
   productImage: string = '';
-  previewImage: string | null = null; // Previsualización de la imagen seleccionada
   hasChanges: boolean = false;
   selectedFile: File | null = null;
   isUploading: boolean = false;
@@ -40,10 +40,11 @@ export class EditProductComponent implements OnInit {
     if (productId) {
       this.backendService.getProductById(productId).subscribe((data) => {
         this.product = data;
-        this.productImage = this.backendService.getImageUrl(this.product.image);
+        this.productImage = this.backendService.getImageUrl(this.product.imagen);
       });
     }
   }
+
 
   onInputChange(): void {
     this.hasChanges = true;
@@ -65,11 +66,12 @@ export class EditProductComponent implements OnInit {
 
       const reader = new FileReader();
       reader.onload = () => {
-        this.previewImage = reader.result as string; // Mostrar la previsualización de la imagen seleccionada
+        this.productImage = reader.result as string; // Mostrar la nueva imagen seleccionada
       };
       reader.readAsDataURL(file);
     }
   }
+
 
   onSave(): void {
     if (this.selectedFile) {
@@ -78,8 +80,7 @@ export class EditProductComponent implements OnInit {
       this.backendService.uploadImage(this.selectedFile).subscribe(
         (response) => {
           this.isUploading = false; // Ocultar el ícono de carga
-          this.product.image = response.path; // Guardar la nueva ruta de la imagen
-          this.previewImage = null; // Limpiar la previsualización una vez que se sube la imagen
+          this.product.imagen = response.path; // Guardar la nueva ruta de la imagen
           this.saveProduct();
         },
         (error) => {
@@ -94,8 +95,8 @@ export class EditProductComponent implements OnInit {
   }
 
   saveProduct(): void {
-    if (!this.product.image) {
-      this.product.image = this.productImage; // Asegúrate de que se envíe la imagen actual si no se ha seleccionado una nueva
+    if (!this.product.imagen) {
+      this.product.imagen = this.productImage; // Asegúrate de que se envíe la imagen actual si no se ha seleccionado una nueva
     }
 
     this.backendService.updateProduct(this.product).subscribe(
@@ -108,6 +109,7 @@ export class EditProductComponent implements OnInit {
       }
     );
   }
+
 
   setButtonState(message: string, state: 'success' | 'error') {
     this.buttonLabel = message;
