@@ -45,8 +45,8 @@ export class MarketComponent implements OnInit {
     }
   }
 
-  getProductImage(imagePath: string) {
-    return this.backendService.getImageUrl(imagePath);
+  getProductImage(imagePath: string):string {
+    return imagePath;
   }
 
   openProduct(product: any) {

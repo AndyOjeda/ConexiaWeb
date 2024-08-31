@@ -58,8 +58,9 @@ export class BackendService {
   }
 
   getImageUrl(imagePath: string): string {
-    return `${this.imageUrl}${imagePath}`;
+    return `https://res.cloudinary.com/tu_cloud_name/image/upload/v123456789/${imagePath}`;
   }
+
 
   getProductsByCategory(category: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/categories/products/${category}`);
