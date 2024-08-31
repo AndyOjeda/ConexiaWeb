@@ -48,6 +48,10 @@ export class UserComponent implements OnInit {
     );
   }
 
+  getProductImage(imagePath: string):string {
+    return imagePath;
+  }
+
   goToComponentA() {
     this.router.navigate(['/userConfig']);
   }

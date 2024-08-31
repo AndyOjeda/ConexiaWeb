@@ -46,4 +46,8 @@ export class ProductComponent implements OnInit {
   buyNow() {
     window.open('https://wa.link/94otp0', '_blank'); // Redirigir al enlace externo en una nueva pestaña
   }
+
+  getProductImage(imagePath: string):string {
+    return imagePath;
+  }
 }
