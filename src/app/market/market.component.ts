@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 export class MarketComponent implements OnInit {
   products: any[] = [];
   activeButton: string | null = null; // Por defecto, mostrar productos de Plástico
+  filteredProducts: any[] = [];
 
   constructor(private router: Router, private backendService: BackendService) {}
 
@@ -28,20 +29,19 @@ export class MarketComponent implements OnInit {
   loadAllProducts() {
     this.backendService.getProducts().subscribe(data => {
       this.products = data;
+      this.filteredProducts = data; // Inicialmente muestra todos los productos
     });
   }
 
   setActiveButton(category: string) {
     if (this.activeButton === category) {
-      // Si el filtro ya está activo, se desactiva y no muestra ningún producto
+      // Si ya está activo, desactiva el filtro y muestra todos los productos
       this.activeButton = null;
-      this.products = [];
+      this.filteredProducts = this.products;
     } else {
-      // Si no está activo, filtra por la categoría seleccionada
+      // Filtra los productos por la categoría seleccionada
       this.activeButton = category;
-      this.backendService.getProductsByCategory(category.toLowerCase()).subscribe(data => {
-        this.products = data;
-      });
+      this.filteredProducts = this.products.filter(product => product.categoria.toLowerCase() === category.toLowerCase());
     }
   }
 
