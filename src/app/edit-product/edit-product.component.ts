@@ -44,6 +44,7 @@ export class EditProductComponent implements OnInit {
     }
   }
 
+
   onInputChange(): void {
     this.hasChanges = true;
   }
@@ -64,18 +65,19 @@ export class EditProductComponent implements OnInit {
 
       const reader = new FileReader();
       reader.onload = () => {
-        this.productImage = reader.result as string;
+        this.productImage = reader.result as string; // Mostrar la nueva imagen seleccionada
       };
       reader.readAsDataURL(file);
     }
   }
+
 
   onSave(): void {
     if (this.selectedFile) {
       // Subir la nueva imagen si se seleccionó una
       this.backendService.uploadImage(this.selectedFile).subscribe(
         (response) => {
-          this.product.imagen = response.path;
+          this.product.imagen = response.path; // Guardar la nueva ruta de la imagen
           this.saveProduct();
         },
         (error) => {
@@ -103,6 +105,7 @@ export class EditProductComponent implements OnInit {
       }
     );
   }
+
 
   setButtonState(message: string, state: 'success' | 'error') {
     this.buttonLabel = message;
