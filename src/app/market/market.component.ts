@@ -39,18 +39,20 @@ export class MarketComponent implements OnInit {
 
 
   setActiveButton(category: string) {
-    if (this.activeButton === category) {
-        // Si ya está activo, desactiva el filtro y muestra todos los productos
-        this.activeButton = null;
-        this.filteredProducts = this.products;
-    } else {
-        // Filtra los productos por la categoría seleccionada
-        this.activeButton = category;
-        this.filteredProducts = this.products.filter(product => {
-            return product.categoria && product.categoria.toLowerCase() === category.toLowerCase();
-        });
-    }
+    this.activeButton = category;
+
+    // Filtra los productos según la categoría seleccionada
+    this.filteredProducts = this.products.filter(product => {
+        if (category === 'Plastico') {
+            return product.categoria_id === 1; // Filtra por `categoria_id` 1 para Plástico
+        } else if (category === 'Textil') {
+            return product.categoria_id === 2; // Filtra por `categoria_id` 2 para Textil
+        } else {
+            return true; // Si no hay categoría seleccionada, muestra todos los productos
+        }
+    });
 }
+
 
 
 
