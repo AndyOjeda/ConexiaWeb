@@ -6,7 +6,7 @@
   <div class="product-card">
     <div class="product-image">
       <!-- Mostrar la previsualización de la imagen seleccionada o la imagen existente -->
-      <img [src]="isUploading ? previewImage : product.image" alt="Producto">
+      <img [src]="isUploading ? previewImage : productImage" alt="Producto">
 
       <!-- Botón para cambiar la imagen -->
       <button class="change-image-button" (click)="onImageChange()">Cambiar Imagen</button>
