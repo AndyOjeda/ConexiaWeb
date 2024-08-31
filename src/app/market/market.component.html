@@ -20,7 +20,7 @@
   </div>
 
   <div class="products-container">
-    <div class="card" *ngFor="let product of products">
+    <div class="card" *ngFor="let product of filteredProducts">
       <div class="card-image">
         <img [src]="getProductImage(product.imagen)" alt="Product Image">
       </div>
@@ -31,4 +31,5 @@
       </div>
     </div>
   </div>
+
 </div>
