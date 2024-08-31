@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
   selector: 'app-add-product',
   standalone: true,
   imports: [NavbarComponent, NgIf, FormsModule, CommonModule],
-  providers: [BackendService, HttpClientModule],
+  providers: [BackendService],
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css']
 })
@@ -21,7 +21,7 @@ export class AddProductComponent {
   @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
 
   buttonLabel: string = 'Agregar';
-  buttonState: 'normal' | 'success' | 'error' = 'normal';
+  buttonState: 'normal' | 'success' | 'error' | 'loading' = 'normal';
 
   constructor(private backendService: BackendService) {}
 
@@ -54,8 +54,9 @@ export class AddProductComponent {
       return;
     }
 
-    const userId = localStorage.getItem('userId'); // Captura el userId del localStorage
+    this.setButtonState('Cargando...', 'loading'); // Estado de carga
 
+    const userId = localStorage.getItem('userId');
     const formData = new FormData();
     formData.append('titulo', this.newProduct.titulo);
     formData.append('descripcion', this.newProduct.descripcion);
@@ -81,11 +82,11 @@ export class AddProductComponent {
     );
   }
 
-  setButtonState(message: string, state: 'success' | 'error') {
+  setButtonState(message: string, state: 'success' | 'error' | 'loading' | 'normal') {
     this.buttonLabel = message;
     this.buttonState = state;
 
-    if (state === 'success') {
+    if (state === 'success' || state === 'error') {
       setTimeout(() => {
         this.resetButton();
       }, 2000); // Volver al estado normal después de 2 segundos

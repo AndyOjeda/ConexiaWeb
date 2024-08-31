@@ -36,15 +36,18 @@
   </div>
 
   <button
-    class="add-button"
-    [ngClass]="{
-      'btn-success': buttonState === 'success',
-      'btn-error': buttonState === 'error',
-      'btn-normal': buttonState === 'normal'
-    }"
-    (click)="createProduct()">
-    {{ buttonLabel }}
-  </button>
+  class="add-button"
+  [ngClass]="{
+    'btn-success': buttonState === 'success',
+    'btn-error': buttonState === 'error',
+    'btn-loading': buttonState === 'loading'
+  }"
+  (click)="createProduct()"
+  [disabled]="buttonState === 'loading'">
+  <span *ngIf="buttonState !== 'loading'">{{ buttonLabel }}</span>
+  <i *ngIf="buttonState === 'loading'" class="pi pi-spin pi-spinner"></i>
+</button>
+
 </div>
 
 
