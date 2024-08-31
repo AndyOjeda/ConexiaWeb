@@ -32,11 +32,13 @@ i{
 }
 
 .product-image img {
-  width: 15.5rem;
-  height: 15rem;
+  max-width: 90%;
+  height: auto;
   border-radius: 10px;
-  margin-left: 2rem;
-  font-size: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
 }
 
 

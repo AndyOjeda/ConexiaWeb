@@ -5,10 +5,16 @@
 <div class="product-page">
   <div class="product-card">
     <div class="product-image">
-      <img [src]="product.imagen" alt="Producto">
+      <img [src]="productImage" alt="Producto">
       <button class="change-image-button" (click)="onImageChange()">Cambiar Imagen</button>
       <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
+
+      <!-- Ícono de carga mientras se sube la imagen -->
+      <div *ngIf="isUploading" class="loading-icon">
+        <i class="pi pi-spin pi-spinner"></i>
+      </div>
     </div>
+
     <div class="product-details">
       <h1 class="product-title">Título</h1>
       <input type="text" id="product-title" [(ngModel)]="product.titulo" (change)="onInputChange()">

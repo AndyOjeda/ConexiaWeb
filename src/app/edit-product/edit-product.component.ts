@@ -21,6 +21,7 @@ export class EditProductComponent implements OnInit {
   productImage: string = '';
   hasChanges: boolean = false;
   selectedFile: File | null = null;
+  isUploading: boolean = false;
 
   // Definición de las nuevas propiedades
   buttonLabel: string = 'Guardar';
@@ -74,13 +75,16 @@ export class EditProductComponent implements OnInit {
 
   onSave(): void {
     if (this.selectedFile) {
-      // Subir la nueva imagen si se seleccionó una
+      // Mostrar el ícono de carga mientras se sube la imagen
+      this.isUploading = true;
       this.backendService.uploadImage(this.selectedFile).subscribe(
         (response) => {
+          this.isUploading = false; // Ocultar el ícono de carga
           this.product.imagen = response.path; // Guardar la nueva ruta de la imagen
           this.saveProduct();
         },
         (error) => {
+          this.isUploading = false; // Ocultar el ícono de carga
           this.setButtonState('Error al subir imagen', 'error');
         }
       );
