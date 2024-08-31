@@ -28,25 +28,29 @@ export class MarketComponent implements OnInit {
 
   loadAllProducts() {
     this.backendService.getProducts().subscribe(data => {
-      this.products = data;
-      this.filteredProducts = data; // Inicialmente muestra todos los productos
+      this.products = data.map(product => {
+        // Asegúrate de que cada producto tenga una categoría definida
+        product.categoria = product.categoria || ''; // Asignar un valor por defecto si no tiene categoría
+        return product;
+      });
+      this.filteredProducts = this.products;
     });
   }
 
+
   setActiveButton(category: string) {
+    const categoryId = category === 'Textil' ? 2 : 1; // Suponiendo que Textil tiene ID 2 y Plástico tiene ID 1
+
     if (this.activeButton === category) {
-      // Si ya está activo, desactiva el filtro y muestra todos los productos
       this.activeButton = null;
       this.filteredProducts = this.products;
     } else {
-      // Filtra los productos por la categoría seleccionada
       this.activeButton = category;
-      this.filteredProducts = this.products.filter(product => {
-        // Asegúrate de que product.categoria esté definido antes de usar toLowerCase
-        return product.categoria && product.categoria.toLowerCase() === category.toLowerCase();
-      });
+      this.filteredProducts = this.products.filter(product => product.categoria_id === categoryId);
     }
   }
+
+
 
 
   getProductImage(imagePath: string):string {
