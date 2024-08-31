@@ -32,11 +32,16 @@ export class ProductComponent implements OnInit {
 
   loadProductDetails(productId: string) {
     this.backendService.getProductById(productId).subscribe(data => {
+      console.log('Detalles del producto:', data); // Verifica los detalles
       this.product = {
         ...data,
-        imagen: this.backendService.getImageUrl(data.imagen) // Obtener la URL completa de la imagen
+        imagen: this.getProductImage(data.imagen) // Aquí simplemente devuelve la URL tal cual
       };
     });
+  }
+
+  getProductImage(imagePath: string):string {
+    return imagePath;
   }
 
   back() {
@@ -47,7 +52,4 @@ export class ProductComponent implements OnInit {
     window.open('https://wa.link/94otp0', '_blank'); // Redirigir al enlace externo en una nueva pestaña
   }
 
-  getProductImage(imagePath: string):string {
-    return imagePath;
-  }
 }
