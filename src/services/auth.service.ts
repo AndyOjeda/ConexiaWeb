@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators'; // Importa el operador tap
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = environment.apiUrl;
   isAuthenticated = false;
 
   getAuthHeaders(): HttpHeaders {
