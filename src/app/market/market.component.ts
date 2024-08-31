@@ -41,9 +41,13 @@ export class MarketComponent implements OnInit {
     } else {
       // Filtra los productos por la categoría seleccionada
       this.activeButton = category;
-      this.filteredProducts = this.products.filter(product => product.categoria.toLowerCase() === category.toLowerCase());
+      this.filteredProducts = this.products.filter(product => {
+        // Asegúrate de que product.categoria esté definido antes de usar toLowerCase
+        return product.categoria && product.categoria.toLowerCase() === category.toLowerCase();
+      });
     }
   }
+
 
   getProductImage(imagePath: string):string {
     return imagePath;
