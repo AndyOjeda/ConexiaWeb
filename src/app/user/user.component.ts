@@ -28,22 +28,23 @@ export class UserComponent implements OnInit {
   }
 
   loadUserProducts() {
+    const userId = this.authService.getUserId();  // Obtén el userId antes de hacer la llamada al backend
+    console.log('userId desde el token:', userId); // Verificar userId
+
     this.backendService.getProducts().subscribe(
-        (products) => {
-            const userId = this.authService.getUserId();
-            console.log('userId desde el token:', userId); // Verificar userId
-            console.log('Productos obtenidos:', products); // Verificar productos
+      (products) => {
+        console.log('Productos obtenidos:', products); // Verificar productos
 
-            // Filtrar productos que tienen un userId igual al del usuario autenticado
-            this.products = products.filter(product => product.user_id === Number(userId));
+        // Filtrar productos que tienen un userId igual al del usuario autenticado
+        this.products = products.filter(product => product.user_id === Number(userId));
 
-            if (this.products.length === 0) {
-                console.log('No hay productos para este usuario.');
-            }
-        },
-        (error) => {
-            console.error('Error al cargar productos del usuario:', error);
+        if (this.products.length === 0) {
+          console.log('No hay productos para este usuario.');
         }
+      },
+      (error) => {
+        console.error('Error al cargar productos del usuario:', error);
+      }
     );
   }
 
