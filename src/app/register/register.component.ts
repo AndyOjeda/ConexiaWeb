@@ -17,7 +17,7 @@ export class RegisterComponent {
   email: string = '';
   password: string = '';
   buttonText: string = 'Continuar';
-  buttonColor: string = '#22c55e'; // Verde por defecto
+  buttonColor: string = '#75d1bf'; // Verde por defecto
 
   constructor(private router: Router, private backendService: BackendService) {}
 

@@ -35,14 +35,14 @@
   border-radius: 20px;
   border: none;
   cursor: pointer;
-  background-color: #9FF155;
+  background-color: #75d1bf;
   color: #FFF;
   font-weight: bold;
   font-size: 16px;
 }
 
 .pi:hover {
-  background-color: #80e03b;
+  background-color: #4bd1b6;
 }
 
 .market-container {

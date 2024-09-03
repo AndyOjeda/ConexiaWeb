@@ -37,7 +37,7 @@ input[type="password"] {
   margin-bottom: 1rem;
   border-radius: 20px;
   border: none;
-  background-color: #22c55e; /* Verde por defecto */
+  background-color: #75d1bf; /* Verde por defecto */
   color: white;
   cursor: pointer;
   display: flex;
@@ -70,6 +70,11 @@ input[type="password"] {
   color: black;
   cursor: pointer;
   width: 15rem;
+}
+
+.btn-register:hover {
+  background-color: #75d1bf; /* Gris más oscuro */
+  color: white;
 }
 
 .login-image img {
