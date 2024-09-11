@@ -28,15 +28,10 @@ export class UserComponent implements OnInit {
   }
 
   loadUserProducts() {
-    const userId = this.authService.getUserId();  // Obtén el userId antes de hacer la llamada al backend
-    console.log('userId desde el token:', userId); // Verificar userId
-
-    this.backendService.getProducts().subscribe(
+    this.backendService.getProductsByUser().subscribe(
       (products) => {
-        console.log('Productos obtenidos:', products); // Verificar productos
-
-        // Filtrar productos que tienen un userId igual al del usuario autenticado
-        this.products = products.filter(product => product.user_id === Number(userId));
+        console.log('Productos obtenidos del usuario:', products); // Verificar productos
+        this.products = products;
 
         if (this.products.length === 0) {
           console.log('No hay productos para este usuario.');
