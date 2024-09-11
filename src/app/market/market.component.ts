@@ -27,13 +27,13 @@ export class MarketComponent implements OnInit {
   }
 
   loadAllProducts() {
-    this.backendService.getProducts().subscribe(data => {
+    this.backendService.getAllProducts().subscribe(data => {
       this.products = data.map(product => {
         // Asegúrate de que cada producto tenga una categoría definida
         product.categoria = product.categoria || ''; // Asignar un valor por defecto si no tiene categoría
         return product;
       });
-      this.filteredProducts = this.products;
+      this.filteredProducts = this.products; // Inicialmente, muestra todos los productos
     });
   }
 

@@ -53,9 +53,14 @@ export class BackendService {
   }
 
 
-  getProducts(): Observable<any[]> {
+  getAllProducts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/products`); // No se envía el token porque es acceso público
+  }
+
+  // Obtener productos del usuario autenticado
+  getProductsByUser(): Observable<any[]> {
     const headers = this.getAuthHeaders();
-    return this.http.get<any[]>(`${this.apiUrl}/products`, { headers });
+    return this.http.get<any[]>(`${this.apiUrl}/products/user`, { headers });
   }
 
   getImageUrl(imagePath: string): string {
