@@ -60,7 +60,7 @@ export class BackendService {
   // Obtener productos del usuario autenticado
   getProductsByUser(): Observable<any[]> {
     const headers = this.getAuthHeaders();
-    return this.http.get<any[]>(`${this.apiUrl}/products/user`, { headers });
+    return this.http.get<any[]>(`${this.apiUrl}/products/user-products`, { headers });
   }
 
   getImageUrl(imagePath: string): string {
