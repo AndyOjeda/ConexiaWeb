@@ -54,7 +54,7 @@ export class BackendService {
 
 
   getAllProducts(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/products`); // No se envía el token porque es acceso público
+    return this.http.get<any[]>(`${this.apiUrl}/products/all`); // No se envía el token porque es acceso público
   }
 
   // Obtener productos del usuario autenticado
