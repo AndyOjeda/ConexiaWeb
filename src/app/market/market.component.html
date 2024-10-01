@@ -19,17 +19,37 @@
     </div>
   </div>
 
-  <div class="products-container">
-    <div class="card" *ngFor="let product of filteredProducts">
-      <div class="card-image">
-        <img [src]="getProductImage(product.imagen)" alt="Product Image">
+  <!-- Contenedor de productos -->
+  <div class="products-container grid grid-cols-4 gap-6">
+    <div class="card relative flex flex-col w-full max-w-xs rounded-xl bg-white shadow-md" *ngFor="let product of filteredProducts">
+      <!-- Imagen del producto que sobresale -->
+      <div class="card-image absolute top-[-40px] left-1/2 transform -translate-x-1/2 w-40 h-40 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 shadow-lg overflow-hidden">
+        <img [src]="getProductImage(product.imagen)" alt="Product Image" class="w-full h-full object-cover rounded-xl">
       </div>
-      <div class="card-content">
-        <p class="card-title">{{ product.titulo }}</p>
-        <p class="card-price">{{ product.precio | currency:'USD':true:'1.0-0' }}</p>
-        <button class="buy-button" (click)="openProduct(product)">Comprar</button>
+
+      <!-- Detalles del producto -->
+      <div class="p-6 pt-12">
+        <h5 class="mb-2 text-xl font-bold text-gray-800">
+          {{ product.titulo }}
+        </h5>
+        <p class="text-base text-gray-600">
+          {{ product.precio | currency:'USD':true:'1.0-0' }}
+        </p>
       </div>
+
+      <!-- Footer con botones -->
+      <div class="p-6 pt-0 flex justify-center space-x-4">
+        <button class="rounded-lg bg-blue-500 py-3 px-6 text-base font-bold uppercase text-white shadow-md hover:shadow-lg focus:shadow-lg transition duration-300" (click)="openProduct(product)" >
+            Info
+        </button>
+        <!-- Botón con ícono de carrito -->
+        <button class="rounded-lg bg-green-500 py-3 px-6 text-base font-bold text-white shadow-md hover:shadow-lg focus:shadow-lg transition duration-300 flex items-center" (click)="addToCart(product)">
+          <!-- Ícono de carrito -->
+          <i class="pi pi-shopping-cart"></i>
+        </button>
+      </div>
+
+
     </div>
   </div>
-
 </div>

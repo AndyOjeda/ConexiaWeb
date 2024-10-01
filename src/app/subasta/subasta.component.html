@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+
+<div class="market-container">
+  <div class="title-market">
+    <h1 class="market-title">Subastas</h1>
+
+    <div class="market-filters">
+      <button class="filter-button" [class.active]="activeButton === 'Textil'" (click)="setActiveButton('Textil')">
+        Textil
+      </button>
+      <button class="filter-button" [class.active]="activeButton === 'Plastico'" (click)="setActiveButton('Plastico')">
+        Plástico
+      </button>
+    </div>
+  </div>
+
+  <!-- Contenedor de productos -->
+  <div class="products-container grid grid-cols-4 gap-6">
+    <div class="card relative flex flex-col w-full max-w-xs rounded-xl bg-white shadow-md" *ngFor="let product of filteredProducts">
+      <!-- Imagen del producto -->
+      <div class="card-image absolute top-[-40px] left-1/2 transform -translate-x-1/2 w-40 h-40 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 shadow-lg overflow-hidden">
+        <img [src]="product.imagen" alt="Product Image" class="w-full h-full object-cover rounded-xl">
+      </div>
+
+      <!-- Detalles del producto -->
+      <div class="p-6 pt-12">
+        <h5 class="mb-2 text-xl font-bold text-gray-800">
+          {{ product.titulo }}
+        </h5>
+        <label>Oferta Actual: {{ product.precio | currency:'USD'}} </label>
+        <br>
+
+        <!-- Botón para abrir el diálogo de oferta -->
+        <button class="btn-offer" (click)="abrirDialogoOferta(product)">Ofertar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Diálogo de subasta -->
+<div *ngIf="productoSeleccionado" class="dialog-overlay">
+  <div class="dialog-content">
+    <h2>{{ productoSeleccionado.titulo }}</h2>
+    <img [src]="productoSeleccionado.imagen" alt="Product Image" class="dialog-product-image">
+    <p>Subasta actual: ${{ productoSeleccionado.precio }}</p>
+
+    <label for="oferta">Introduce tu oferta (mayor a ${{ productoSeleccionado.precio }}):</label>
+    <input type="number" id="oferta" [(ngModel)]="ofertaUsuario" min="{{ productoSeleccionado.precio + 1 }}" required>
+
+    <!-- Contador de tiempo restante (30 min) -->
+    <p>Tiempo restante: {{ tiempoRestante }}</p>
+
+    <button class="btn-offer" (click)="confirmarOferta()">Ofertar</button>
+    <button class="btn-cancel" (click)="cerrarDialogo()">Cancelar</button>
+  </div>
+</div>
+

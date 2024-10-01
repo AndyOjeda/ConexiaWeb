@@ -1,149 +1,130 @@
 body {
-  background-color: #25272e; /* Fondo oscuro */
-  color: #ffffff; /* Texto blanco para buen contraste */
+  background-color: #25272e;
+  color: #ffffff;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+}
+
+.market-filters {
+  margin-left: 2rem;
+  margin-top: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+i {
+  font-size: 2.5rem;
+  color: #ffffff;
+  cursor: pointer;
 }
 
 .product-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
-  padding: 20px;
-}
-
-i{
-  margin-left: 5rem;
-  margin-top: 2rem;
-  font-size: 2.5rem;
-  color: #ffffff;
+  height: 100vh; /* Para centrar en toda la altura */
+  padding-top: 50px; /* Asegurar que haya espacio entre el icono y el contenedor */
 }
 
 .product-card {
-  background-color: #25272e; /* Fondo de la card un poco más claro que el fondo principal */
+  background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   display: flex;
-  max-width: 90rem;
-  width: 80rem;
-  overflow: hidden;
+  max-width: 60rem;
+  width: 60rem;
+  padding: 20px;
+  text-align: left;
+}
+
+.product-image {
+  width: 40%;
+  margin-right: 20px; /* Espacio entre la imagen y el resto del contenido */
 }
 
 .product-image img {
-  max-width: 90%;
+  max-width: 100%;
   height: auto;
   border-radius: 10px;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  display: block;
 }
 
+.change-image-button {
+  margin-top: 10px;
+  background-color: #75d1bf;
+  color: #333;
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
 .product-details {
-  margin-left: 5rem;
-  padding: 20px;
+  width: 60%; /* Ajustamos el ancho para que todo esté simétrico */
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .product-title {
-  font-size: 25px;
-  font-weight: 400;
-  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  color: #ffffff;
-}
-
-input{
-  height: 3rem;
-  width: 25rem;
-  border-radius: 25px;
   color: #25272e;
-  font-size: 25px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.buy-button {
-  background-color: #75d1bf; /* Botón dorado para destacar */
+input, select, textarea {
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 15px;
+  color: #25272e;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+textarea {
+  height: 100px;
+}
+
+button {
+  background-color: #75d1bf;
   color: #fff;
   border: none;
-  padding: 15px 20px;
-  font-size: 18px;
+  padding: 10px 15px;
+  font-size: 14px;
   cursor: pointer;
   text-transform: uppercase;
-  transition: background-color 0.3s ease;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  border-radius: 25px;
+  border-radius: 15px;
+  margin-top: 10px;
 }
 
-
-.product-image {
-  position: relative;
-  margin: 1rem;
-}
-
-.change-image-button {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background-color: #75d1bf;
-  color: #333;
-  border: none;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.change-image-button:hover {
-  background-color: #e0b800;
-}
-
-.save-button {
-  background-color: #75d1bf; /* Verde */
+button:hover {
+  background-color: #65c1af;
 }
 
 .delete-button {
-  background-color: #f44336; /* Rojo */
-  color: #fff;
-  border: none;
-  padding: 15px 20px;
-  font-size: 18px;
-  border-radius: 25px;
-  cursor: pointer;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
+  background-color: #f44336;
+  margin-top: 10px;
 }
 
 .delete-button:hover {
   background-color: #d32f2f;
 }
 
-.buy-button {
-  background-color: #75d1bf;  /* Azul por defecto */
+.loading-icon {
+  margin-top: 10px;
+  font-size: 20px;
+  color: #75d1bf;
+  display: flex;
+  align-items: center;
 }
 
-.save-button {
-  background-color: #008cba; /* Verde para éxito */
+.loading-icon i {
+  margin-right: 5px;
 }
 
-.error-button {
-  background-color: #f44336; /* Rojo para error */
-}
-
-
-select {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 25rem;
-  height: 3rem;
-  border-radius: 25px;
-  font-size: 18px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}

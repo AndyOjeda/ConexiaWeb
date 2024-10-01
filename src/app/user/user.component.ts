@@ -16,6 +16,15 @@ export class UserComponent implements OnInit {
   products: any[] = [];
   userName: string | null = null;
 
+    // Variables para manejar la visibilidad de los diálogos
+    displayNotifications: boolean = false;
+    displayMessages: boolean = false;
+
+    // Datos ficticios para las notificaciones y mensajes
+    notifications = [];
+    messages = [];
+
+
   constructor(
     private router: Router,
     public backendService: BackendService,
@@ -53,5 +62,13 @@ export class UserComponent implements OnInit {
 
   editarProducto(productId: string) {
     this.router.navigate(['/editProduct', productId]);
+  }
+
+  toggleNotifications() {
+    this.displayNotifications = !this.displayNotifications;
+  }
+
+  toggleMessages() {
+    this.displayMessages = !this.displayMessages;
   }
 }

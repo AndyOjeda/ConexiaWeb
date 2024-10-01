@@ -4,13 +4,13 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { HttpClientModule } from '@angular/common/http';
+
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FormsModule, HttpClientModule], // Agrega FormsModule y HttpClientModule],
+  imports: [RouterOutlet, NavbarComponent, FormsModule ], // Agrega FormsModule y HttpClientModule],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService

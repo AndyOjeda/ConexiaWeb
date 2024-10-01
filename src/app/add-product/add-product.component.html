@@ -3,51 +3,59 @@
 <div class="container">
   <h1>Agregar Producto</h1>
 
-  <div class="upload-section">
-    <button class="upload-button" *ngIf="!selectedImage" (click)="fileInput.click()">
-      <i class="pi pi-upload"></i>
-    </button>
+  <div class="main-section">
+    <div class="upload-section">
+      <div class="image-box">
+        <button class="upload-button" *ngIf="!selectedImage" (click)="fileInput.click()">
+          <i class="pi pi-upload"></i> Agregar Imagen
+        </button>
 
-    <input
-      type="file"
-      #fileInput
-      (change)="onFileSelected($event)"
-      accept="image/*"
-      style="display: none;" />
+        <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" style="display: none;" />
 
-    <div *ngIf="selectedImage" class="image-preview">
-      <img [src]="selectedImage" alt="Selected Image" class="preview-image" />
-      <button class="remove-button" (click)="removeImage()">
-        <i class="pi pi-times"></i>
+        <div *ngIf="selectedImage" class="image-preview">
+          <img [src]="selectedImage" alt="Selected Image" class="preview-image" />
+          <button class="remove-button" (click)="removeImage()">
+            <i class="pi pi-times"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <label for="titulo">Nombre</label>
+      <input type="text" placeholder="Nombre" [(ngModel)]="newProduct.titulo" name="titulo" />
+
+      <label for="precio">Precio</label>
+      <input type="text" placeholder="Precio" [(ngModel)]="newProduct.precio" name="precio" />
+
+      <label for="descripcion">Descripción</label>
+      <textarea placeholder="Descripción" [(ngModel)]="newProduct.descripcion" name="descripcion"></textarea>
+
+      <label for="categoria">Categoría</label>
+      <select [(ngModel)]="newProduct.categoria_id" name="categoria_id">
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.nombre }}
+        </option>
+      </select>
+
+      <label for="estado">Estado</label>
+      <select [(ngModel)]="newProduct.estado" name="estado">
+        <option value="Venta">Venta</option>
+        <option value="Subasta">Subasta</option>
+      </select>
+
+      <button
+        class="add-button"
+        [ngClass]="{
+          'btn-success': buttonState === 'success',
+          'btn-error': buttonState === 'error',
+          'btn-loading': buttonState === 'loading'
+        }"
+        (click)="createProduct()"
+        [disabled]="buttonState === 'loading'">
+        <span *ngIf="buttonState !== 'loading'">{{ buttonLabel }}</span>
+        <i *ngIf="buttonState === 'loading'" class="pi pi-spin pi-spinner"></i>
       </button>
     </div>
   </div>
-
-  <div class="form-section">
-    <input type="text" placeholder="Nombre" [(ngModel)]="newProduct.titulo" name="titulo" />
-    <input type="text" placeholder="Precio" [(ngModel)]="newProduct.precio" name="precio" />
-    <textarea placeholder="Descripción" [(ngModel)]="newProduct.descripcion" name="descripcion"></textarea>
-
-    <select [(ngModel)]="newProduct.categoria_id" name="categoria_id">
-      <option *ngFor="let category of categories" [value]="category.id">
-        {{ category.nombre }}
-      </option>
-    </select>
-  </div>
-
-  <button
-  class="add-button"
-  [ngClass]="{
-    'btn-success': buttonState === 'success',
-    'btn-error': buttonState === 'error',
-    'btn-loading': buttonState === 'loading'
-  }"
-  (click)="createProduct()"
-  [disabled]="buttonState === 'loading'">
-  <span *ngIf="buttonState !== 'loading'">{{ buttonLabel }}</span>
-  <i *ngIf="buttonState === 'loading'" class="pi pi-spin pi-spinner"></i>
-</button>
-
 </div>
-
-

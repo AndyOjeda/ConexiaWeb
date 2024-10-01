@@ -86,3 +86,52 @@ input[type="password"] {
   margin: 10px 0;
 }
 
+/* Ajustes para pantallas de 768px o menos (tablets y móviles) */
+@media (max-width: 768px) {
+  /* Ajuste del contenedor de login para pantallas pequeñas */
+  .login-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 1rem;
+  }
+
+  /* Ajuste del formulario de login para pantallas pequeñas */
+  .login-form {
+    max-width: 100%;
+    margin-left: 0;
+    padding: 0 1rem;
+  }
+
+  /* Título más pequeño en pantallas pequeñas */
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  /* Inputs más pequeños en pantallas pequeñas */
+  input[type="email"],
+  input[type="password"] {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+
+  /* Botón de continuar ajustado */
+  .btn-continue {
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  /* Botón de registrar ajustado */
+  .btn-register {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  /* Ajuste de la imagen en pantallas pequeñas */
+  .login-image {
+    display: none; /* Ocultamos la imagen en pantallas pequeñas */
+  }
+}

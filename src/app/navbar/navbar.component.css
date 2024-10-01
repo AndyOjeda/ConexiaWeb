@@ -1,37 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 .navbars {
   display: flex;
   justify-content: center;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0; /* Mantener el navbar en la parte superior */
 }
 
-.home-navbar {
-  background-color: rgba(37, 39, 46, 0.8);
+.home-navbar, .other-navbar {
+  background-color: rgba(37, 39, 46, 0.3); /* Fondo más transparente */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  border-radius: 50px;
-  height: 3rem;
-  width: 70rem;
-  text-align: center;
-
+  height: 3.5rem;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Sombra más difusa */
+  backdrop-filter: blur(20px); /* Mayor desenfoque para efecto glass */
+  border-radius: 0; /* Bordes redondeados quitados para efecto sticky */
+  transition: background-color 0.3s ease;
 }
 
-.other-navbar {
-  background-color: rgba(25, 25, 25, 0.8); /* Fondo para otras páginas */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(37, 39, 46, 0.8); /* Fondo del navbar semi-transparente */
-  padding: 10px 20px;
-  margin-top: 2rem; /* Margen superior */
-  border-radius: 50px;
-  height: 3rem;
-  width: 70rem;
+.home-navbar:hover, .other-navbar:hover {
+  background-color: rgba(37, 39, 46, 0.5); /* Efecto más oscuro al hacer hover */
 }
 
 body {
   margin: 0;
   padding: 0;
+  font-family: "Raleway", sans-serif; /* Se aplica Raleway globalmente */
   box-sizing: border-box;
 }
 
@@ -40,27 +38,26 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(37, 39, 46, 0.8); /* Fondo del navbar semi-transparente */
+  background-color: rgba(37, 39, 46, 0.3); /* Fondo del navbar semi-transparente */
   padding: 10px 20px;
-  margin-top: 2rem; /* Margen superior */
-  border-radius: 50px;
   height: 3rem;
+  backdrop-filter: blur(20px); /* Efecto de desenfoque */
 }
 
-img{
-  width: 2.5rem;
-  height: 2.5rem;
+img {
+  width: 2rem;
+  height: 2rem;
 }
 
 .logo {
   color: #fff;
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-left: 1.5rem;
   text-shadow: 2px 1px 0.5px #75d1bf;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .nav-links {
@@ -73,21 +70,28 @@ img{
   color: #fff;
   text-decoration: none;
   margin-right: 25px;
-  margin-left: 25px;
   font-size: 1.5rem;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: 500;
+  font-family: 'Raleway', sans-serif; /* Aplicando Raleway a los enlaces */
+  font-weight: 600;
+  font-size: 1.3rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #75d1bf;
 }
 
 .add-button {
   background-color: #75d1bf;
   color: white;
   border: none;
-  padding: 5px 45px;
+  padding: 3px 40px;
   border-radius: 15px;
   cursor: pointer;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Raleway', sans-serif; /* Aplicando Raleway al botón */
   font-weight: 500;
+  font-size: 1.3rem;
   font-size: 1.5rem;
 }
 
@@ -98,17 +102,19 @@ img{
 
 .dropdown-menu {
   position: absolute;
-  top: 100%; /* Se posiciona justo debajo del icono */
+  top: 100%;
   right: 0;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9); /* Ligera transparencia en el dropdown */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1000; /* Asegura que el menú esté sobre otros elementos */
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   min-width: 150px;
   padding: 10px;
-  border-radius: 5px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  border-radius: 10px; /* Bordes más suaves */
+  backdrop-filter: blur(15px); /* Efecto blur en el dropdown */
+  font-family: 'Raleway', sans-serif ;
+  font-weight: 400;
 }
 
 .dropdown-menu a {
@@ -120,4 +126,595 @@ img{
 
 .dropdown-menu a:hover {
   background-color: #f1f1f1;
+}
+
+/* Estilos para la barra lateral */
+.custom-sidebar {
+  width: 300px;
+}
+
+.checkout-button {
+  background-color: #75d1bf;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.checkout-button:hover {
+  background-color: #59bfa6;
+}
+
+/* Estilos adicionales para el navbar */
+.icon-group {
+  display: flex;
+  align-items: center;
+}
+
+.pi-shopping-cart {
+  position: relative;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.pi-shopping-cart:hover {
+  color: #75d1bf;
+}
+
+/* Estilos del dropdown de perfil */
+.profile-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.dropdown-menu a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Sidebar cerrado por defecto */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -500px; /* Oculto a la derecha */
+  width: 400px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: white;
+  padding: 20px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+
+/* Clase para mostrar el sidebar */
+.sidebar-open {
+  right: 0; /* Visible en la pantalla */
+}
+
+.sidebar-closed {
+  right: -500px; /* Escondido fuera de la pantalla */
+}
+
+/* Botón de cierre en la esquina superior derecha */
+.sidebar .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: rgb(56, 54, 54);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.sidebar .close-btn:hover {
+  color: #414040;
+}
+
+h3 {
+  margin-top: 1.5rem;
+  color: black;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+p {
+  color: black;
+}
+
+li {
+  margin: 10px 0;
+  color: black;
+}
+
+.checkout-button {
+  background-color: #75d1bf;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: "Inter", sans-serif;
+  font-weight: 600;
+}
+
+.checkout-button:hover {
+  background-color: #59bfa6;
+}
+
+/* Estilos para la tabla de productos */
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table td {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.cart-image img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-title {
+  font-size: 16px;
+  color: #333;
+}
+
+.cart-price {
+  font-size: 16px;
+  color: #333;
+  text-align: right;
+}
+
+.cart-remove {
+  text-align: right;
+}
+
+.cart-remove button {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.cart-remove button:hover {
+  color: darkred;
+}
+
+/* Estilos para el total y el botón */
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.total-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.checkout-button {
+  background-color: #75d1bf;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkout-button:hover {
+  background-color: #59bfa6;
+}
+
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  width: 1200px;
+}
+
+.dialog-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.products-box {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  margin-right: 20px;
+}
+
+.product-image {
+  width: 150px;
+  height: 150px;
+}
+
+.pay-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.loading-container, .success-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.payment-box {
+  flex: 0.4;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.products-container {
+  flex: 1;
+  margin-right: 20px;
+  background-color: #FFFFFF;
+}
+
+.payment-container {
+  flex: 0 0 300px;
+  background-color: #FAFAFA;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-table img.product-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.payment-container h4 {
+  margin-bottom: 15px;
+}
+
+.payment-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.credit-card-inputs div {
+  margin-bottom: 10px;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-dialog {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.product-image {
+  width: 100px;
+  height: auto;
+}
+
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table th, .cart-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.cart-footer {
+  margin-top: 20px;
+  text-align: right;
+}
+
+
+.close-dialog {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.menosButton {
+  background-color: #75d1bf;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.masButton {
+  background-color: #75d1bf;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.img-cart{
+  width: 8rem;
+  height: 5rem;
+}
+
+#cardName {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#cardNumber {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#expiration {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#cvv {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Estilo para el overlay de carga */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+/* Estilo para el mensaje de éxito */
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: white;
+  align-items: center;
+  z-index: 1000;
+  font-size: 2rem;
+  color: green;
+}
+
+/* Otros estilos de la UI */
+.products-box {
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+.pay-button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pay-button:hover {
+  background-color: #218838;
+}
+
+/* Esconde el menú links en pantallas pequeñas */
+@media (max-width: 768px) {
+  .dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .cart-table {
+    width: 100%;
+    table-layout: auto; /* Permitir que las columnas tengan más flexibilidad */
+  }
+
+  .cart-table th, .cart-table td {
+    text-align: center;
+    padding: 8px;
+    vertical-align: middle; /* Asegura que los elementos se alineen verticalmente */
+  }
+
+  /* Ajustar el tamaño de la imagen del producto */
+  .cart-table img.product-image {
+    width: 50px; /* Ajustar el tamaño de las imágenes a un tamaño más visible */
+    height: auto;
+    object-fit: cover; /* Mantener la proporción correcta de la imagen */
+    border-radius: 8px; /* Bordes redondeados para estética */
+  }
+
+/* Ajustar los botones de cantidad */
+.menosButton, .masButton {
+  width: 30px; /* Aumentar el tamaño de los botones para mejor interacción */
+  height: 30px;
+  font-size: 1.5rem; /* Aumentar el tamaño del ícono */
+  display: inline-flex; /* Asegura que el contenido esté alineado correctamente */
+  justify-content: center; /* Centra el ícono horizontalmente */
+  align-items: center; /* Centra el ícono verticalmente */
+  text-align: center;
+  border-radius: 5px;
+  background-color: #75d1bf; /* Color de fondo consistente */
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px; /* Espaciado entre los botones */
+}
+
+.menosButton:hover, .masButton:hover {
+  background-color: #5ab0a0; /* Cambio de color al hacer hover */
+}
+
+/* Asegurarse de que el tamaño de los iconos se ajuste dentro del botón */
+.menosButton i, .masButton i {
+  font-size: 1.2rem; /* Tamaño del ícono dentro del botón */
+}
+
+
+  /* Botón de pago más grande y centrado */
+  .pay-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: #28a745; /* Botón de pago verde */
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .pay-button:hover {
+    background-color: #218838; /* Color más oscuro al hacer hover */
+  }
+
+  /* Ajustes de texto en los totales */
+  .total-price, .subtotal, .shipping {
+    font-size: 1.1rem;
+    text-align: right;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    position: absolute; /* Posiciona el menú debajo del botón de hamburguesa */
+    top: 3.5rem; /* Ajusta la posición dependiendo del alto del navbar */
+    left: 0;
+    background-color: rgba(37, 39, 46, 0.9); /* Fondo del menú */
+    z-index: 999;
+    transition: max-height 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+    /* Ajustar la separación entre los enlaces del menú */
+  .nav-links a {
+    padding: 10px 0; /* Espacio entre los enlaces */
+    margin: 5px 0;   /* Espacio adicional en la parte superior e inferior */
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    display: block;  /* Asegura que los enlaces ocupen toda la línea */
+    text-align: center; /* Centra el texto en el menú */
+  }
+
+  .nav-links a:hover {
+    color: #75d1bf;
+  }
+
+
+  .nav-open {
+    display: flex;
+    max-height: 300px; /* Ajusta según la cantidad de links */
+  }
+
+  .hamburger-menu {
+    display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+}
+
+/* Ocultar botón hamburguesa en pantallas grandes */
+@media (min-width: 769px) {
+  .hamburger-menu {
+    display: none;
+  }
 }

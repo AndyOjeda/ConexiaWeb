@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class EditProductComponent implements OnInit {
   hasChanges: boolean = false;
   selectedFile: File | null = null;
   isUploading: boolean = false;
+  imageUploaded: boolean = false;
 
   // Definición de las nuevas propiedades
   buttonLabel: string = 'Guardar';
@@ -32,7 +34,8 @@ export class EditProductComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private backendService: BackendService
+    private backendService: BackendService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -40,11 +43,16 @@ export class EditProductComponent implements OnInit {
     if (productId) {
       this.backendService.getProductById(productId).subscribe((data) => {
         this.product = data;
-        this.productImage = this.backendService.getImageUrl(this.product.imagen);
+
+        if (this.product.imagen) {
+          this.productImage = this.product.imagen;
+          console.log('Imagen URL:', this.productImage);
+        }
+
+        this.cdr.detectChanges();
       });
     }
   }
-
 
   onInputChange(): void {
     this.hasChanges = true;
@@ -64,41 +72,43 @@ export class EditProductComponent implements OnInit {
       this.selectedFile = file;
       this.hasChanges = true;
 
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.productImage = reader.result as string; // Mostrar la nueva imagen seleccionada
-      };
-      reader.readAsDataURL(file);
+      // Quitar la previsualización y mostrar mensaje de "Cargando..."
+      this.imageUploaded = false;
+      this.isUploading = true;
+
+      // Subir la imagen inmediatamente después de seleccionarla
+      this.uploadImage(file);
     }
   }
+
+  uploadImage(file: File): void {
+    this.backendService.uploadImage(file).subscribe(
+      (response) => {
+        this.isUploading = false;
+        this.product.imagen = response.path; // Guardar la nueva ruta de la imagen
+
+        // Mostrar mensaje de "Nueva foto cargada" en lugar de la previsualización
+        this.imageUploaded = true;
+      },
+      (error) => {
+        this.isUploading = false;
+        this.setButtonState('Error al subir imagen', 'error');
+      }
+    );
+  }
+
 
 
   onSave(): void {
-    if (this.selectedFile) {
-      // Mostrar el ícono de carga mientras se sube la imagen
-      this.isUploading = true;
-      this.backendService.uploadImage(this.selectedFile).subscribe(
-        (response) => {
-          this.isUploading = false; // Ocultar el ícono de carga
-          this.product.imagen = response.path; // Guardar la nueva ruta de la imagen
-          this.saveProduct();
-        },
-        (error) => {
-          this.isUploading = false; // Ocultar el ícono de carga
-          this.setButtonState('Error al subir imagen', 'error');
-        }
-      );
-    } else {
-      // Guardar los cambios del producto con la imagen existente
-      this.saveProduct();
+    if (!this.product.imagen && this.imageUploaded) {
+      // Si hay una imagen subida, asegurarse de que se guarda correctamente
+      this.product.imagen = this.productImage;
     }
+
+    this.saveProduct();
   }
 
   saveProduct(): void {
-    if (!this.product.imagen) {
-      this.product.imagen = this.productImage; // Asegúrate de que se envíe la imagen actual si no se ha seleccionado una nueva
-    }
-
     this.backendService.updateProduct(this.product).subscribe(
       () => {
         this.setButtonState('Cambios exitosos', 'success');

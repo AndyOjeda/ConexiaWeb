@@ -80,11 +80,21 @@ export class BackendService {
     return this.http.get<any>(`${this.apiUrl}/products/${id}`);
   }
 
+  getProductsByState(estado: string) {
+    return this.http.get(`${this.apiUrl}/products/state/${estado}`);
+  }
+
   updateProduct(product: any): Observable<any> {
     const headers = this.getAuthHeaders();
     const productId = product.id;
     return this.http.put<any>(`${this.apiUrl}/products/${productId}`, product, { headers });
   }
+
+  updateProductPrice(productId: number, precio: number): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.put<any>(`${this.apiUrl}/products/update-price/${productId}`, { precio }, { headers });
+  }
+
 
   deleteProduct(productId: string): Observable<any> {
     const headers = this.getAuthHeaders();

@@ -4,18 +4,27 @@
 
 <div class="product-page">
   <div class="product-card">
+
     <div class="product-image">
-      <img [src]="product.imagen" alt="Producto">
+      <img *ngIf="productImage && !imageUploaded" [src]="productImage" alt="Producto"> <!-- Solo mostrar la imagen actual si no se ha cargado una nueva -->
+
+      <div *ngIf="isUploading" class="loading-text">
+        <i class="pi pi-spin pi-spinner"></i> Cargando...
+      </div>
+
+      <div *ngIf="imageUploaded && !isUploading" class="uploaded-text">
+        Nueva foto cargada
+      </div>
+
       <button class="change-image-button" (click)="onImageChange()">Cambiar Imagen</button>
       <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
-
-      <!-- Ícono de carga mientras se sube la imagen -->
-      <div *ngIf="isUploading" class="loading-icon">
-        <i class="pi pi-spin pi-spinner"></i>
-      </div>
     </div>
 
+
+
+
     <div class="product-details">
+      <!-- Detalles del producto -->
       <h1 class="product-title">Título</h1>
       <input type="text" id="product-title" [(ngModel)]="product.titulo" (change)="onInputChange()">
 
@@ -29,6 +38,12 @@
       <select id="product-category" [(ngModel)]="product.categoria_id" (change)="onInputChange()">
         <option [value]="1">Plástico</option>
         <option [value]="2">Textil</option>
+      </select>
+
+      <h1 class="product-title">Estado</h1>
+      <select id="product-status" [(ngModel)]="product.estado">
+        <option value="Venta">Venta</option>
+        <option value="Subasta">Subasta</option>
       </select>
       <br><br>
 

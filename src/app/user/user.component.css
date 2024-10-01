@@ -1,147 +1,237 @@
-.market-container {
+/* Aplica la fuente Nunito a todo el documento */
+body {
+  font-family: 'Nunito', sans-serif;
+}
+
+/* Ajuste del tamaño y peso en áreas específicas */
+.sidebar-nav ul li a,
+.main-content h1,
+.table th,
+.table td {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+}
+
+h1.welcome-message {
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+/* Estructura de Dashboard */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  padding: 20px;
+  background-color: #f0f2f5;
+}
+
+.sidebar {
+  width: 20%;
+  background-color: #161C2A;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  margin-right: 10px;
   padding: 20px;
 }
 
-.title-market {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  color: #FFF;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.sidebar-header {
+  text-align: center;
   font-size: 2rem;
-  margin-left: 3rem;
+  padding: 20px 0;
+  border-bottom: 1px solid #3b3f4d;
 }
 
-
-i{
-  margin-left: 30rem;
+.sidebar-nav ul {
+  list-style: none; /* Eliminar los puntos de la lista */
+  padding: 0;
 }
 
-.market-filters {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-grow: 1;
+.sidebar-nav ul li {
+  padding: 15px 20px;
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
 }
 
-
-.products-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Dos columnas */
-  gap: 20px; /* Espacio entre las tarjetas */
-}
-
-/* Estilos para las tarjetas */
-.card {
+.sidebar-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
-  width: 42rem;
-  height: 15rem;
-  background-color: #4158D0;
-  background-image: linear-gradient(43deg, #ffffff 0%, #75d1bf 100%);
-  border-radius: 8px;
-  color: rgb(0, 0, 0);
+  gap: 10px;
+}
+
+.sidebar-nav ul li a i {
+  font-size: 1.5rem;
+}
+
+.sidebar-nav ul li:hover {
+  background-color: #3b3f4d;
+  border-radius: 15px;
+}
+
+.main-content {
+  width: 80%;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabla de Productos */
+.product-table {
+  margin-top: 20px;
+  border-radius: 15px;
   overflow: hidden;
-  position: relative;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.product-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+}
+
+.product-table th, .product-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.product-table img {
+  width: 100px;
+  border-radius: 10px;
+}
+
+.action-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  margin-left: 2.5rem;
+  margin-right: 10px;
 }
 
-.card:hover {
-  transform: rotateY(10deg) rotateX(10deg) scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+.edit-button {
+  background-color: #36c9ab;
 }
 
-.card:before {
-  content: "";
-  position: absolute;
+.delete-button {
+  background-color: #f44336;
+}
+
+.action-button:hover {
+  opacity: 0.9;
+}
+
+/* Estilos del fondo oscuro para el diálogo */
+.dialog {
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.1));
-  transition: transform 0.5s cubic-bezier(0.23, 1, 0.320, 1);
-  z-index: 1;
-}
-
-.card:hover:before {
-  transform: translateX(-100%);
-}
-
-.card:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: #fffaef;
-  transition: transform 0.5s cubic-bezier(0.23, 1, 0.320, 1);
-  z-index: 1;
-}
-
-.card:hover:after {
-  transform: translateX(100%);
-}
-
-.card-image {
-  flex: 0 0 150px;
-  margin-right: 20px;
-  z-index: 2; /* Asegura que la imagen esté sobre los efectos 3D */
-
-}
-
-.card-image img {
-  width: 15.5rem;
-  height: 15rem;
-  border-radius: 10px;
-  margin-left: 2rem;
-  font-size: 1rem;
-}
-
-.card-content {
-  flex: 1;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 3; /* Aumenta el z-index para que el contenido esté por encima */
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  margin-left: 4rem;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegúrate que esté por encima de otros elementos */
 }
 
-.card-title {
-  font-size: 30px;
-  font-weight: 700;
-  color: #000; /* Asegúrate de que el color del título sea visible */
-  z-index: 2; /* Aumenta el z-index */
-  margin-bottom: 0;
-}
-
-.card-price {
-  font-size: 35px;
-  color: #000000;
-  margin: 0;
-}
-
-.buy-button {
-  padding: 10px 20px;
+/* Estilos del contenido del diálogo */
+.dialog-content {
+  background-color: #fff;
+  padding: 20px;
   border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  background-color: #75d1bf;
-  color: #FFF;
-  font-weight: bold;
-  font-size: 16px;
-  align-self: flex-start;
-  z-index: 2; /* Asegura que el botón esté sobre los efectos 3D */
-  height: 2.5rem;
-  width: 18rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-.buy-button:hover {
-  background-color: #36c9ab;
+.dialog-content h2 {
+  margin-top: 0;
+}
+
+.dialog-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.dialog-content button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.dialog-content button:hover {
+  background-color: #45a049;
+}
+
+
+/* Ajustes para pantallas de 768px o menos (tablets y móviles) */
+@media (max-width: 768px) {
+  /* Ajuste del contenedor de dashboard para pantallas pequeñas */
+  .dashboard-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  /* Ajuste del sidebar para que ocupe el 100% en móviles */
+  .sidebar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  /* Ajuste del contenido principal para pantallas pequeñas */
+  .main-content {
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* Título de bienvenida más pequeño en pantallas pequeñas */
+  h1.welcome-message {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  /* Ajuste de la tabla de productos para pantallas pequeñas */
+  .product-table table {
+    font-size: 0.9rem;
+  }
+
+  .product-table th,
+  .product-table td {
+    padding: 10px;
+  }
+
+  .product-table img {
+    width: 70px; /* Ajuste de tamaño de las imágenes */
+  }
+
+  /* Botones más pequeños en pantallas pequeñas */
+  .action-button {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+  }
+
+  /* Ajustes para los diálogos en pantallas pequeñas */
+  .dialog-content {
+    width: 90%;
+    max-width: 400px;
+    padding: 15px;
+  }
+
+  .dialog-content button {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
 }

@@ -1,58 +1,236 @@
-body {
-  margin: 0;
-  padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+section {
+  padding: 2rem 0 2rem; /* Reducido el padding superior para subir el texto */
+}
+
+
+.home {
+  max-width: 2550px;
   width: 100%;
-  height: 100%;
-
-  background: #000000;
-  --gap: 4em;
-  --line: 1px;
-  --color: rgba(255, 255, 255, 0.371);
-
-  background-image: linear-gradient(
-      -90deg,
-      transparent calc(var(--gap) - var(--line)),
-      var(--color) calc(var(--gap) - var(--line) + 1px),
-      var(--color) var(--gap)
-    ),
-    linear-gradient(
-      0deg,
-      transparent calc(var(--gap) - var(--line)),
-      var(--color) calc(var(--gap) - var(--line) + 1px),
-      var(--color) var(--gap)
-    );
-  background-size: var(--gap) var(--gap);
-}
-
-.container {
-  height: 86.5vh;
-}
-
-.welcome-section {
+  min-height: 840px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 66vh;
-  background-color: transparent;
-  margin-bottom: 5rem;
+  position: static;
+  background: url(../../assets/img/Background6.png);
+  background-size: cover;
+  background-position: center left;
+  background-repeat: no-repeat;
 }
 
-.welcome-section h1 {
-  color: white;
-  font-size: 7rem;
+
+.home-text {
+  padding-left: 130px;
+  color: white; /* El color blanco para el texto general */
+  font-family: "Fredoka", sans-serif !important;
+}
+
+.home-text h1 {
+  font-size: 8rem; /* Aumentamos el tamaño de "Conexia" */
+  color: #75d1bf; /* Azul clarito para "Conexia" */
+  margin-top: -1rem;
+  font-weight: 800;
+  text-shadow: 5px 5px 3px #fff;
+}
+
+.home-text h2 {
+  font-size: 6.5rem;
+  color: white; /* Aseguramos que el texto superior sea blanco */
+  margin-top: -4rem;
   font-weight: 600;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.welcome-section span {
-  background-color: #25272E;
-  padding: 10px 20px;
-  margin-left: 28px;
-  border-radius: 45px;
-  font-size: 8rem;
+.home-text .btn {
+  display: inline-block;
+  padding: 20px 35px;
+  margin-top: 3rem;
+  background-color: #75d1bf;
+  color: white;
+  border-radius: 15px;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: "Inter", sans-serif !important;
+}
+
+.home-text .btn:hover {
+  background-color: #5cb8a1;
+}
+
+.container.marketing .row {
+  justify-content: center; /* Centramos los círculos */
   text-align: center;
 }
 
-.welcome-section span:hover {
-  background-color: #75d1bf;
+.col-lg-2 {
+  margin: 0 auto; /* Aseguramos el centrado */
 }
+
+.margin {
+  margin-top: 2rem;
+}
+
+.container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-container {
+  flex: 1;
+}
+
+.image-right {
+  max-width: 400px; /* Ajusta el tamaño según lo que necesites */
+  margin-left: 20px; /* Espacio entre el texto y la imagen */
+}
+
+
+/* Media Queries para Tablet y Móviles */
+@media (max-width: 768px) {
+  .home {
+    min-height: 600px; /* Ajustamos la altura para pantallas más pequeñas */
+    justify-content: center; /* Centramos el contenido en tabletas */
+    padding: 2rem 1rem;
+  }
+
+  .home-text {
+    padding-left: 20px; /* Reducimos el padding lateral */
+    text-align: center; /* Centramos el texto */
+  }
+
+  .home-text h1 {
+    font-size: 5rem; /* Reducimos el tamaño del título */
+  }
+
+  .home-text h2 {
+    font-size: 4rem; /* Reducimos el tamaño del subtítulo */
+  }
+
+  .home-text .btn {
+    padding: 15px 25px; /* Ajustamos el tamaño del botón */
+    font-size: 1rem;
+  }
+
+  .image-right {
+    max-width: 100%; /* Imagen ocupa todo el ancho en tabletas */
+    margin-left: 0; /* Eliminamos el margen */
+  }
+
+  .text-container {
+    margin-bottom: 2rem; /* Añadimos un margen inferior */
+  }
+
+  .p-5 {
+    padding: 2rem; /* Reducimos el padding en tabletas */
+  }
+
+  .col-lg-2 {
+    flex: 1 1 45%; /* Las columnas ocupan el 45% del ancho en tabletas */
+    margin: 1rem 0;
+  }
+
+  footer .col-md-4 {
+    text-align: center; /* Centramos el footer */
+  }
+}
+
+@media (max-width: 576px) {
+  .home {
+    min-height: 500px; /* Ajustamos la altura para móviles */
+    flex-direction: column; /* Alineamos el contenido en columna */
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .home-text {
+    padding-left: 0; /* Eliminamos padding lateral */
+  }
+
+  .home-text h1 {
+    font-size: 3rem; /* Ajustamos el tamaño del título para móviles */
+  }
+
+  .home-text h2 {
+    font-size: 2.5rem; /* Ajustamos el tamaño del subtítulo */
+  }
+
+  .home-text .btn {
+    padding: 10px 20px; /* Reducimos el tamaño del botón */
+    font-size: 0.9rem;
+  }
+
+  .image-right {
+    max-width: 100%; /* Imagen ocupa todo el ancho disponible */
+    margin-left: 0; /* Eliminamos el margen */
+  }
+
+  .p-5 {
+    padding: 1.5rem; /* Reducimos más el padding para móviles */
+  }
+
+  .col-lg-2 {
+    flex: 1 1 90%; /* Las columnas ocupan el 90% del ancho en móviles */
+    margin: 1rem 0;
+  }
+
+  .text-container {
+    text-align: center; /* Centramos el texto en móviles */
+  }
+
+  footer .col-md-4 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+}
+
+/* General para la sección de Optimización de Recursos */
+.container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Aseguramos que los elementos puedan saltar a la siguiente línea si es necesario */
+}
+
+.text-container {
+  flex: 1;
+}
+
+.image-right {
+  max-width: 400px;
+  margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    flex-direction: column; /* Disposición en columna para tabletas y móviles */
+    text-align: center; /* Centramos el contenido */
+  }
+
+  .text-container {
+    margin-bottom: 2rem; /* Añadimos un margen inferior para separar texto e imagen */
+  }
+
+  .image-right {
+    max-width: 100%; /* La imagen ocupará el 100% del contenedor */
+    margin-left: 0; /* Eliminamos el margen izquierdo en pantallas pequeñas */
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    flex-direction: column; /* Mantiene la disposición en columna en móviles */
+    text-align: center; /* Alineación centrada para todo el contenido */
+  }
+
+  .image-right {
+    max-width: 100%; /* Imagen ocupa todo el ancho disponible en móviles */
+    margin-left: 0; /* Eliminamos el margen izquierdo */
+  }
+
+  .text-container {
+    text-align: center; /* Centramos el texto */
+  }
+}
+
+

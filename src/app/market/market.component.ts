@@ -5,6 +5,7 @@ import { BackendService } from '../../services/backend.service';
 import { NgIf } from '@angular/common';
 import { NgFor } from '@angular/common';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-market',
@@ -20,20 +21,16 @@ export class MarketComponent implements OnInit {
   activeButton: string | null = null; // Por defecto, mostrar productos de Plástico
   filteredProducts: any[] = [];
 
-  constructor(private router: Router, private backendService: BackendService) {}
+  constructor(private router: Router, private backendService: BackendService, private cartService: CartService) {}
 
   ngOnInit() {
     this.loadAllProducts();
   }
 
   loadAllProducts() {
-    this.backendService.getAllProducts().subscribe(data => {
-      this.products = data.map(product => {
-        // Asegúrate de que cada producto tenga una categoría definida
-        product.categoria = product.categoria || ''; // Asignar un valor por defecto si no tiene categoría
-        return product;
-      });
-      this.filteredProducts = this.products; // Inicialmente, muestra todos los productos
+    this.backendService.getProductsByState('Venta').subscribe((products: any) => {
+        this.products = products;
+        this.filteredProducts = products; // Inicialmente, mostrar todos los productos
     });
   }
 
@@ -53,9 +50,6 @@ export class MarketComponent implements OnInit {
     });
 }
 
-
-
-
   getProductImage(imagePath: string):string {
     return imagePath;
   }
@@ -64,5 +58,11 @@ export class MarketComponent implements OnInit {
     // Lógica para abrir el producto (por ejemplo, navegar a una nueva vista)
     console.log('Producto seleccionado:', product);
     this.router.navigate(['/product', product.id]);
+  }
+
+
+  addToCart(product: any) {
+    this.cartService.addToCart(product); // Añade el producto al carrito
+    console.log('Producto agregado al carrito:', product);
   }
 }

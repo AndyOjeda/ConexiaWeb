@@ -10,12 +10,14 @@ import { UserComponent } from './user/user.component';
 import { ProductComponent } from './product/product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { AuthGuard } from '../guard/AuthGuard';
+import { SubastaComponent } from './subasta/subasta.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'market', component: MarketComponent },
+  { path: 'auction', component: SubastaComponent },
   { path: 'search', component: SearchComponent },
   { path: 'addProduct', component: AddProductComponent, canActivate: [AuthGuard] },
   { path: 'user', component: UserComponent, canActivate: [AuthGuard] },

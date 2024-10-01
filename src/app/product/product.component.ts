@@ -4,11 +4,13 @@ import { BackendService } from '../../services/backend.service';
 import { CommonModule } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule, NgIf],
+  imports: [CommonModule, NgIf, NavbarComponent],
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
@@ -18,7 +20,8 @@ export class ProductComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private backendService: BackendService,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -48,8 +51,9 @@ export class ProductComponent implements OnInit {
     this.router.navigate(['/market']);
   }
 
-  buyNow() {
-    window.open('https://wa.link/94otp0', '_blank'); // Redirigir al enlace externo en una nueva pestaña
+  addToCart() {
+    this.cartService.addToCart(this.product); // Llamada al servicio para añadir el producto
+    console.log('Producto añadido al carrito:', this.product);
   }
 
 }

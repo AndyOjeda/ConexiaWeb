@@ -1,23 +1,76 @@
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
 <app-navbar></app-navbar>
-<div class="market-container">
-  <div class="title-market">
-      <h1 class="market-title">Bienvenido {{ userName }}</h1>
-
-    <div class="market-filters">
-        <i class="pi pi-cog" (click)="goToComponentA()"></i>
+<div class="dashboard-container">
+  <!-- Barra Lateral -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>Conexia</h2>
     </div>
-  </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="user"><i class="pi pi-box"></i> Productos</a></li>
+        <li><a (click)="toggleNotifications()"><i class="pi pi-inbox"></i> Notificaciones</a></li>
+        <li><a (click)="toggleMessages()"><i class="pi pi-envelope"></i> Mensajes</a></li>
+        <li><a href="userConfig"><i class="pi pi-cog"></i> Configuración</a></li>
+      </ul>
+    </nav>
+  </aside>
 
-  <div class="products-container">
-    <div *ngFor="let product of products" class="card">
-      <div class="card-image">
-        <img [src]="getProductImage(product.imagen)" alt="Product Image">
-      </div>
-      <div class="card-content">
-        <p class="card-title">{{ product.titulo }}</p>
-        <p class="card-price">{{ product.precio | currency:'USD':true:'1.0-0' }}</p>
-        <button class="buy-button" (click)="editarProducto(product.id)">Editar</button>
-      </div>
+  <!-- Contenido Principal -->
+  <main class="main-content">
+    <div class="header">
+      <h1 class="welcome-message">{{ userName }}</h1>
     </div>
+
+    <!-- Tabla de Productos -->
+    <section class="product-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Imagen</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{ product.titulo }}</td>
+            <td><img [src]="getProductImage(product.imagen)" alt="Product Image"></td>
+            <td>{{ product.precio | currency:'USD':true:'1.0-0' }}</td>
+            <td>
+              <button class="action-button edit-button" (click)="editarProducto(product.id)">Editar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+<!-- Diálogo para Notificaciones -->
+<div class="dialog" *ngIf="displayNotifications">
+  <div class="dialog-content">
+    <h2>Notificaciones</h2>
+    <p>Estas son tus notificaciones:</p>
+    <ul>
+      <li *ngFor="let notification of notifications">{{ notification }}</li>
+    </ul>
+    <button (click)="toggleNotifications()">Cerrar</button>
   </div>
+</div>
+
+<!-- Diálogo para Mensajes -->
+<div class="dialog" *ngIf="displayMessages">
+  <div class="dialog-content">
+    <h2>Mensajes</h2>
+    <p>Estos son tus mensajes:</p>
+    <ul>
+      <li *ngFor="let message of messages">{{ message }}</li>
+    </ul>
+    <button (click)="toggleMessages()">Cerrar</button>
+  </div>
+</div>
+  </main>
 </div>

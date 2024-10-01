@@ -86,3 +86,66 @@ i{
 .buy-button:hover {
   background-color: #e0b800; /* Oscurece un poco el color al pasar el mouse */
 }
+
+
+/* Ajustes para pantallas de 768px o menos (tablets y móviles) */
+@media (max-width: 768px) {
+  /* Ajuste del contenedor de producto para pantallas pequeñas */
+  .product-page {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    height: auto;
+  }
+
+  /* Ajuste del contenedor de la card de producto */
+  .product-card {
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+  }
+
+  /* Ajuste de la imagen del producto en pantallas pequeñas */
+  .product-image img {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  /* Ajuste de los detalles del producto */
+  .product-details {
+    padding: 10px;
+    text-align: center;
+  }
+
+  /* Ajuste del título del producto */
+  .product-title {
+    font-size: 24px;
+  }
+
+  /* Ajuste del precio del producto */
+  .product-price {
+    font-size: 32px;
+  }
+
+  /* Ajuste de la descripción del producto */
+  .product-description {
+    font-size: 16px;
+  }
+
+  /* Botón de comprar ajustado */
+  .buy-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  /* Ajuste del icono de regreso */
+  i {
+    margin-left: 0;
+    margin-top: 10px;
+    font-size: 2rem;
+  }
+}

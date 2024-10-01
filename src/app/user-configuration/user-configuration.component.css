@@ -60,3 +60,47 @@ h2{
   font-size: 2rem;
   color: #FFF;
 }
+
+
+/* Ajustes para pantallas de 768px o menos (tablets y móviles) */
+@media (max-width: 768px) {
+  /* Ajuste del contenedor para pantallas pequeñas */
+  .market-container {
+    padding: 10px;
+  }
+
+  /* Título de configuración más pequeño en pantallas pequeñas */
+  .title-market {
+    flex-direction: column;
+    margin-left: 0;
+    font-size: 1.5rem;
+  }
+
+  /* Ajuste del ícono de regreso */
+  i {
+    margin-left: 0;
+    margin-top: 10px;
+    align-self: flex-start;
+    font-size: 1.5rem;
+  }
+
+  /* Tamaño del input y barra de búsqueda más pequeños */
+  .search-bar {
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .search-input {
+    font-size: 14px;
+    padding: 8px 15px;
+    max-width: 100%;
+  }
+
+  /* Ajuste del tamaño del subtítulo (h2) */
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+}

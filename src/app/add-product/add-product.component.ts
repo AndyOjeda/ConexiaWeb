@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AddProductComponent {
   categories: any[] = [];
-  newProduct = { titulo: '', descripcion: '', precio: 0, categoria_id: 1 };
+  newProduct = { titulo: '', descripcion: '', precio: 0, categoria_id: 1, estado: 'Venta' };
   selectedImage: string | null = null;
 
   @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
@@ -62,6 +62,7 @@ export class AddProductComponent {
     formData.append('descripcion', this.newProduct.descripcion);
     formData.append('precio', this.newProduct.precio.toString());
     formData.append('categoria_id', this.newProduct.categoria_id.toString());
+    formData.append('estado', this.newProduct.estado);
     formData.append('user_id', userId!);
 
     if (this.fileInput.nativeElement.files[0]) {

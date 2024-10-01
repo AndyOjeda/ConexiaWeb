@@ -1,19 +1,171 @@
 <div class="navbars">
   <nav [ngClass]="{'home-navbar': isHome, 'other-navbar': !isHome}">
-    <button class="logo" (click)="goHome()"><img src="assets/img/logoConexia.png" alt="logo"></button>
-    <div class="nav-links">
+    <button class="logo" (click)="goHome()">
+      <img src="assets/img/logoConexia.png" alt="logo">
+    </button>
+
+    <!-- Menú Hamburguesa (visible en móviles) -->
+    <button class="hamburger-menu" (click)="toggleMobileMenu()">
+      &#9776; <!-- Símbolo del menú -->
+    </button>
+
+    <!-- Links de navegación (ocultos en pantallas pequeñas) -->
+    <div class="nav-links" [ngClass]="{'nav-open': isMobileMenuOpen}">
       <a href="market">Tienda</a>
+      <a href="auction">Subasta</a>
       <a href="search">Buscar</a>
       <button class="add-button" *ngIf="isLoggedIn()" (click)="navigateTo('addProduct')">Agregar</button>
     </div>
-    <div class="profile-icon" (click)="toggleMenu()">
-      <span class="pi pi-user" style="color: white; font-size: 1.5rem; margin-right: 1rem;"></span>
-      <div class="dropdown-menu" *ngIf="isMenuOpen">
-        <a *ngIf="isLoggedIn()" (click)="navigateTo('user')">Mi Cuenta</a>
-        <a *ngIf="isLoggedIn()" (click)="logout()">Cerrar Sesión</a>
-        <a *ngIf="!isLoggedIn()" (click)="navigateTo('login')">Iniciar Sesión</a>
-        <a *ngIf="!isLoggedIn()" (click)="navigateTo('register')">Registrar</a>
+
+    <div class="icon-group">
+      <span class="pi pi-shopping-cart" *ngIf="isLoggedIn()" style="color: white; font-size: 1.5rem; margin-right: 1rem; cursor: pointer;" (click)="toggleSidebar()"></span>
+      <div class="profile-icon" (click)="toggleMenu()">
+        <span class="pi pi-user" style="color: white; font-size: 1.5rem; margin-right: 1rem;"></span>
+        <div class="dropdown-menu" *ngIf="isMenuOpen">
+          <a *ngIf="isLoggedIn()" (click)="navigateTo('user')">Mi Cuenta</a>
+          <a *ngIf="isLoggedIn()" (click)="logout()">Cerrar Sesión</a>
+          <a *ngIf="!isLoggedIn()" (click)="navigateTo('login')">Iniciar Sesión</a>
+          <a *ngIf="!isLoggedIn()" (click)="navigateTo('register')">Registrar</a>
+        </div>
       </div>
     </div>
   </nav>
 </div>
+
+<!-- Sidebar -->
+<div [ngClass]="{'sidebar-open': sidebarVisible, 'sidebar-closed': !sidebarVisible}" class="sidebar">
+  <button class="close-btn" (click)="toggleSidebar()">&#10005;</button>
+  <h3>Carrito de Compras</h3>
+
+  <table *ngIf="selectedProducts.length > 0; else emptyCart" class="cart-table">
+    <tr *ngFor="let product of selectedProducts; let i = index">
+      <!-- Imagen del producto -->
+      <td class="cart-image">
+        <img [src]="getProductImage(product.imagen)" alt="{{ product.title }}">
+      </td>
+
+      <!-- Nombre del producto -->
+      <td class="cart-title">{{ product.titulo }}</td>
+
+      <!-- Precio total por la cantidad de productos -->
+      <td class="cart-price">{{ product.precio | currency:'USD':'symbol':'1.0-2' }}</td>
+
+      <!-- Botón de eliminar -->
+      <td class="cart-remove">
+        <button (click)="removeFromCart(i)">&#10005;</button>
+      </td>
+    </tr>
+  </table>
+
+  <ng-template #emptyCart>
+    <p>El carrito está vacío</p>
+  </ng-template>
+
+  <!-- Total y botón de finalizar -->
+  <div class="cart-footer">
+    <span class="total-price">Total: {{ getTotalPrice() | currency:'USD':'symbol':'1.0-2' }}</span>
+    <button class="checkout-button" (click)="checkout()">Finalizar Compra</button>
+  </div>
+</div>
+
+
+<!-- DIALOG PAGO -->
+<div *ngIf="showDialog" class="dialog-overlay">
+  <div class="dialog">
+    <!-- Título del diálogo arriba -->
+    <div class="dialog-header">
+      <h3>Shopping Cart</h3>
+      <button class="close-dialog" (click)="closeDialog()">&#10005;</button>
+    </div>
+
+    <div class="dialog-content">
+      <!-- Contenedor de productos a la izquierda con borde redondeado -->
+      <div class="products-container products-box">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Image</th>
+              <th>Quantity</th>
+              <th>Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of selectedProducts">
+              <td>{{ product.titulo }}</td>
+              <td>
+                <img [src]="getProductImage(product.imagen)" alt="{{ product.title }}" class="img-cart">
+              </td>
+              <td>
+                <button (click)="decreaseQuantity(product)" class="menosButton">-</button>
+                {{ product.quantity }}
+                <button (click)="increaseQuantity(product)" class="masButton">+</button>
+              </td>
+              <td>{{ product.totalPrice | currency:'USD' }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="cart-footer">
+          <div class="subtotal">
+            Subtotal: {{ getTotalPrice() | currency:'USD' }}
+          </div>
+          <div class="shipping">
+            Shipping: Free
+          </div>
+          <div class="total-price">
+            Total: {{ getTotalPrice() | currency:'USD' }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor de métodos de pago a la derecha con borde redondeado -->
+      <div class="payment-container payment-box">
+        <h4>Payment Info</h4>
+        <label>
+          <input type="radio" name="payment" value="creditCard" [(ngModel)]="paymentMethod"> Credit Card
+        </label>
+        <label>
+          <input type="radio" name="payment" value="paypal" [(ngModel)]="paymentMethod"> PayPal
+        </label>
+
+        <!-- Inputs para tarjeta de crédito -->
+        <div *ngIf="paymentMethod === 'creditCard'" class="credit-card-inputs">
+          <div>
+            <label for="cardName">Titular Tarjeta</label>
+            <input id="cardName" type="text" [(ngModel)]="cardName">
+          </div>
+          <div>
+            <label for="cardNumber">Numero de Tarjeta</label>
+            <input id="cardNumber" type="text" [(ngModel)]="cardNumber">
+          </div>
+          <div>
+            <label for="expiration">Fecha de Expiracion</label>
+            <input id="expiration" type="date" [(ngModel)]="cardExpiration">
+          </div>
+          <div>
+            <label for="cvv">CVV</label>
+            <input id="cvv" type="text" [(ngModel)]="cardCVV">
+          </div>
+        </div>
+
+        <!-- Botón de pago -->
+        <button class="pay-button" (click)="processPayment()">Pagar</button>
+      </div>
+    </div>
+
+<!-- Pantalla de carga -->
+<div *ngIf="isLoading" class="loading-overlay">
+  <i class="pi pi-spin pi-spinner" style="font-size: 5rem;"></i>
+  <p>Cargando pago...</p>
+</div>
+
+<!-- Mensaje de éxito -->
+<div *ngIf="isPaymentSuccessful" class="success-overlay">
+  <p>Pago Exitoso</p>
+</div>
+
+
+
+
+
